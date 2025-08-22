@@ -7,9 +7,9 @@ const crops = [
     farmer: "Rajesh Kumar",
     location: "Nashik, Maharashtra",
     harvested: "1/15/2024",
-    quantity: "500 kg",
-    price: "₹25/kg",
-    oldPrice: "₹30/kg",
+    quantity: 500,
+    price: 25,
+    oldPrice: 30,
     rating: "4.8",
     category: "Vegetables",
     image:
@@ -20,9 +20,9 @@ const crops = [
     farmer: "Priya Sharma",
     location: "Karnal, Haryana",
     harvested: "1/10/2024",
-    quantity: "2000 kg",
-    price: "₹85/kg",
-    oldPrice: "₹90/kg",
+    quantity: 2000,
+    price: 85,
+    oldPrice: 90,
     rating: "4.9",
     category: "Grains",
     image:
@@ -33,9 +33,9 @@ const crops = [
     farmer: "Suresh Patil",
     location: "Pune, Maharashtra",
     harvested: "1/12/2024",
-    quantity: "1000 kg",
-    price: "₹18/kg",
-    oldPrice: "₹22/kg",
+    quantity: 1000,
+    price: 18,
+    oldPrice: 22,
     rating: "4.6",
     category: "Vegetables",
     image:
@@ -46,9 +46,9 @@ const crops = [
     farmer: "Lakshmi Devi",
     location: "Guntur, Andhra Pradesh",
     harvested: "1/14/2024",
-    quantity: "700 kg",
-    price: "₹40/kg",
-    oldPrice: "₹50/kg",
+    quantity: 700,
+    price: 40,
+    oldPrice: 50,
     rating: "4.7",
     category: "Vegetables",
     image:
@@ -59,9 +59,9 @@ const crops = [
     farmer: "Vinod Singh",
     location: "Shimla, Himachal Pradesh",
     harvested: "1/8/2024",
-    quantity: "800 kg",
-    price: "₹120/kg",
-    oldPrice: "₹140/kg",
+    quantity: 800,
+    price: 120,
+    oldPrice: 140,
     rating: "4.9",
     category: "Fruits",
     image: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce",
@@ -71,9 +71,9 @@ const crops = [
     farmer: "Anil Pawar",
     location: "Ratnagiri, Maharashtra",
     harvested: "1/5/2024",
-    quantity: "600 kg",
-    price: "₹200/kg",
-    oldPrice: "₹220/kg",
+    quantity: 600,
+    price: 200,
+    oldPrice: 220,
     rating: "4.8",
     category: "Fruits",
     image:
@@ -84,9 +84,9 @@ const crops = [
     farmer: "Ramesh Yadav",
     location: "Latur, Maharashtra",
     harvested: "1/3/2024",
-    quantity: "1500 kg",
-    price: "₹95/kg",
-    oldPrice: "₹105/kg",
+    quantity: 1500,
+    price: 95,
+    oldPrice: 105,
     rating: "4.7",
     category: "Grains",
     image:
@@ -97,15 +97,17 @@ const crops = [
     farmer: "Kavitha Reddy",
     location: "Anantapur, Andhra Pradesh",
     harvested: "1/6/2024",
-    quantity: "1200 kg",
-    price: "₹65/kg",
-    oldPrice: "₹75/kg",
+    quantity: 1200,
+    price: 65,
+    oldPrice: 75,
     rating: "4.6",
     category: "Grains",
     image:
       "https://plus.unsplash.com/premium_photo-1668420870736-168a5a5c79a0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
+
+
 
 export default function MarketPlace() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -200,9 +202,6 @@ export default function MarketPlace() {
               <div className="p-4">
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="font-semibold text-lg">{crop.name}</h3>
-                  <span className="text-yellow-500 font-bold whitespace-nowrap">
-                    ⭐ {crop.rating}
-                  </span>
                 </div>
 
                 <div className="mt-1 text-sm">
@@ -220,14 +219,14 @@ export default function MarketPlace() {
                 <div className="flex items-end justify-between mt-3">
                   <div>
                     <p className="text-sm text-gray-700">Quantity</p>
-                    <p className="font-semibold">{crop.quantity}</p>
+                    <p className="font-semibold">{crop.quantity} Kg</p>
                   </div>
                   <div className="text-right">
                     <p className="text-sm text-gray-700">Price</p>
                     <p className="text-green-600 font-extrabold">
-                      {crop.price}{" "}
+                      ₹{crop.price}/Kg{" "}
                       <span className="text-gray-400 line-through text-sm align-middle">
-                        {crop.oldPrice}
+                        {crop.oldPrice} 
                       </span>
                     </p>
                   </div>
@@ -237,9 +236,14 @@ export default function MarketPlace() {
                   <button className="flex-1 border border-green-600 text-green-700 px-3 py-2 rounded-xl hover:bg-green-50 transition">
                     Contact Farmer
                   </button>
-                  <button className="flex-1 bg-green-600 text-white px-3 py-2 rounded-xl shadow hover:bg-green-700 hover:shadow-md transition">
-                    Buy Now
-                  </button>
+                  <Link
+                    to="/payment"
+                    state={{ crop }}
+                    className="bg-green-500 text-white px-4 py-2 rounded inline-block mt-2"
+                  >
+                      Buy Now
+                  </Link>
+                  
                 </div>
               </div>
             </article>

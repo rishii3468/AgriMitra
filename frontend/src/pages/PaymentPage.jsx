@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 export default function PaymentPage() {
   const location = useLocation();
-  const { crop, totalPrice } = location.state || {};
+  const { crop } = location.state || {};
 
   if (!crop) {
     return (
@@ -48,7 +48,7 @@ export default function PaymentPage() {
           </h3>
           <p className="text-gray-700">
             Total Payable Amount:{" "}
-            <span className="text-green-700 font-bold">{totalPrice}</span>
+            <span className="text-green-700 font-bold">{crop.quantity * crop.price}</span>
           </p>
         </div>
 
