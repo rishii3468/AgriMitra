@@ -32,7 +32,7 @@ const cropSchema = new mongoose.Schema({
     required: true,
   },
   contactInfo: {
-    type: String,
+    type: Number,
     required: true,
   },
 }, {timestamps: true});

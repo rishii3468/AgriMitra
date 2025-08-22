@@ -1,6 +1,6 @@
   import React, { useState } from "react";
 
-  export default function FarmerRegistration() {
+  export default function SignUp() {
     const [form, setForm] = useState({
       name: "",
       email: "",

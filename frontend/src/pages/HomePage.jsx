@@ -34,10 +34,14 @@ const AgriConnect = () => {
                 <option>English</option>
                 <option>Hindi</option>
               </select>
-              <button className="text-gray-700 hover:text-green-600 hidden sm:block transition-colors">Login</button>
-              <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 hidden sm:block transition-colors">
-                Sign Up
-              </button>
+              <Link to="/login">
+                <button className="text-gray-700 hover:text-green-600 hidden sm:block transition-colors">Login</button>
+              </Link>
+              <Link to="/register">
+                <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 hidden sm:block transition-colors">
+                  Sign Up
+                </button>
+              </Link>
               
               {/* Mobile menu button */}
               <button 
@@ -58,7 +62,7 @@ const AgriConnect = () => {
           </div>
         </div>
         
-        {/* Mobile menu */}
+      
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t shadow-lg">
             <div className="px-2 pt-2 pb-3 space-y-1">
@@ -71,13 +75,17 @@ const AgriConnect = () => {
                   <option>English</option>
                   <option>Hindi</option>
                 </select>
-                <button className="w-full text-left px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors mb-2">Login</button>
-                <button className="w-full bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-700 transition-colors">
-                  Sign Up
-                </button>
+                <Link to="/login">
+                  <button className="w-full text-left px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors mb-2">Login</button>
+                </Link>
+                <Link to="/register">
+                  <button className="w-full bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-700 transition-colors mb-3">
+                    Sign Up
+                  </button>
+                </Link>
               </div>
             </div>
-          </div>
+          </div> 
         )}
       </header>
 

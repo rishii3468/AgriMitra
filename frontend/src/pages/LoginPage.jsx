@@ -61,10 +61,7 @@ export default function Login() {
         >
           Verify OTP
         </button>
-
-        <p className="text-center text-green-800 font-medium mt-3 sm:mt-4 text-sm sm:text-base">
-          {result}
-        </p>
+        <p className="text-center text-green-800 font-medium mt-4">{result}</p>
       </div>
     </div>
   );
