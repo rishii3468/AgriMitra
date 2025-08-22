@@ -26,38 +26,45 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-50">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6">
-        <h2 className="text-2xl font-bold text-center text-green-700 mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-green-50 p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-center text-green-700 mb-4 sm:mb-6">
           Login with OTP
         </h2>
+
         <input
           type="text"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="Enter phone number (+91...)"
-          className="w-full p-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-4"
+          className="w-full p-2 sm:p-3 border border-green-300 shadow-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-3 sm:mb-4 text-sm sm:text-base"
         />
+
         <button
           onClick={sendOTP}
-          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 mb-6"
+          className="w-full bg-green-600 text-white py-2 sm:py-3 rounded-lg hover:bg-green-700 transition duration-200 mb-4 sm:mb-6 text-sm sm:text-base"
         >
           Send OTP
         </button>
+
         <input
           type="text"
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
           placeholder="Enter OTP"
-          className="w-full p-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-4"
+          className="w-full p-2 sm:p-3 border border-green-300 shadow-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-3 sm:mb-4 text-sm sm:text-base"
         />
+
         <button
           onClick={verifyOTP}
-          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-200"
+          className="w-full bg-green-600 text-white py-2 sm:py-3 rounded-lg hover:bg-green-700 transition duration-200 text-sm sm:text-base"
         >
           Verify OTP
         </button>
-        <p className="text-center text-green-800 font-medium mt-4">{result}</p>
+
+        <p className="text-center text-green-800 font-medium mt-3 sm:mt-4 text-sm sm:text-base">
+          {result}
+        </p>
       </div>
     </div>
   );
