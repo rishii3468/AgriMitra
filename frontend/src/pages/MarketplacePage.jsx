@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router';
 
 const crops = [
   {
@@ -106,7 +107,7 @@ const crops = [
   },
 ];
 
-export default function App() {
+export default function MarketPlace() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
 
@@ -128,10 +129,15 @@ export default function App() {
     <div className="bg-gray-50 min-h-screen">
       {/* Top bar */}
       <nav className="flex justify-between items-center px-4 sm:px-6 py-4 bg-white border-b">
-        <button className="flex items-center gap-2 text-green-700 hover:opacity-80">
-          <span className="text-2xl">🌱</span>
-          <span className="text-2xl font-extrabold">AgriMitra</span>
-        </button>
+        <Link to='/'>
+          <button className="flex items-center gap-2 text-green-700 hover:opacity-80">
+            
+
+            
+            <span className="text-2xl">🌱</span>
+            <span className="text-2xl font-extrabold">AgriMitra</span>
+          </button>
+        </Link>
 
         <div className="flex gap-2 sm:gap-3">
           <button className="px-2 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-lg sm:rounded-xl bg-green-600 text-white shadow hover:-translate-y-0.5 hover:shadow-md hover:bg-green-700 active:translate-y-0 transition">
