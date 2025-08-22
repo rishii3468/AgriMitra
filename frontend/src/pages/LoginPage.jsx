@@ -57,6 +57,10 @@ export default function Login() {
         >
           Verify OTP
         </button>
+        
+        <button className="w-full bg-none text-blue-500 hover:underline mt-2"> 
+          <span>Already Have an account?</span> Sign in
+        </button>
         <p className="text-center text-green-800 font-medium mt-4">{result}</p>
       </div>
     </div>
