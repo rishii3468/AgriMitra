@@ -5,9 +5,11 @@ import path from "path"
 
 
 import notesRoutes from "./routes/notesRoutes.js"
+import cropRoutes from "./routes/cropRoutes.js"
 import { connectDB } from "./config/db.js"
 import corsOptions from "./config/corsOptions.js"
 import credentials from "./middleware/credentials.js"
+import { url } from "inspector"
 
 dotenv.config();
 
@@ -18,6 +20,9 @@ const __dirname = path.resolve()
 
 
 //middleware
+app.use(express.urlencoded({extended: true}))
+
+app.use(express.json())
 
 app.use(credentials);
 
@@ -26,8 +31,9 @@ app.use(cors(corsOptions));
 
 
 
-app.use(express.json()) //this middleware will parse the JSON bodies: req.body
+app.use(express.json()) 
 
+app.use("/api/crops",cropRoutes)
 
 app.use("/api/notes",notesRoutes)
 
