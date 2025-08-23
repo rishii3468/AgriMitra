@@ -169,7 +169,7 @@ const ContractFarmingPlatform = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
-      {/* Header */}
+      
       <header className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
@@ -182,9 +182,9 @@ const ContractFarmingPlatform = () => {
         </div>
       </header>
 
-      {/* Main Content */}
+      
       <main className="max-w-6xl mx-auto px-4 py-8">
-        {/* Title Section */}
+        
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Contracts</h2>
           <p className="text-gray-600 max-w-3xl">
@@ -194,7 +194,7 @@ const ContractFarmingPlatform = () => {
           </p>
         </div>
 
-        {/* Search */}
+        
         <div className="mb-8">
           <input
             type="text"
@@ -205,12 +205,12 @@ const ContractFarmingPlatform = () => {
           />
         </div>
 
-        {/* Contracts Available */}
+        
         <div className="mb-6">
           <h3 className="text-xl font-semibold text-gray-800">Available Contracts</h3>
         </div>
 
-        {/* Contracts List */}
+        
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredContracts.map(contract => (
             <div key={contract.id} className="bg-white rounded-lg border border-gray-200 p-6">
@@ -274,7 +274,7 @@ const ContractFarmingPlatform = () => {
         )}
       </main>
 
-      {/* Coming Soon Modal */}
+      
       {showComingSoon && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
@@ -293,7 +293,7 @@ const ContractFarmingPlatform = () => {
         </div>
       )}
 
-      {/* Coming Soon Modal */}
+      
       {showComingSoon && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
@@ -312,7 +312,7 @@ const ContractFarmingPlatform = () => {
         </div>
       )}
 
-      {/* Footer */}
+      
       <footer className="bg-gray-800 text-white py-8 mt-12">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between">

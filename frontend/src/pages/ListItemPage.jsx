@@ -82,7 +82,7 @@ const ListCropForm = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-50 to-green-100 p-4">
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12">
-        {/* Header */}
+        
         <Link to="/marketplace" >
           <p className="text-left w-3xl hover:text-green-700 cursor-pointer">Back</p>
         </Link>
@@ -97,9 +97,9 @@ const ListCropForm = () => {
           
         </div>
 
-        {/* Form */}
+        
         <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          {/* Crop Name */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">Crop Name</label>
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -116,7 +116,7 @@ const ListCropForm = () => {
             {errors.cropName && <p className="text-red-500 text-xs mt-1">{errors.cropName}</p>}
           </div>
 
-          {/* Farmer Name */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">Farmer Name</label>
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -133,7 +133,7 @@ const ListCropForm = () => {
             {errors.farmerName && <p className="text-red-500 text-xs mt-1">{errors.farmerName}</p>}
           </div>
 
-          {/* City */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">City</label>
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -150,7 +150,7 @@ const ListCropForm = () => {
             {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city}</p>}
           </div>
 
-          {/* State */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">State</label>
             <input
@@ -164,7 +164,7 @@ const ListCropForm = () => {
             {errors.state && <p className="text-red-500 text-xs mt-1">{errors.state}</p>}
           </div>
 
-          {/* Harvested Date */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">Harvested Date</label>
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -182,7 +182,7 @@ const ListCropForm = () => {
             )}
           </div>
 
-          {/* Quantity */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">Quantity (kg)</label>
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -199,7 +199,7 @@ const ListCropForm = () => {
             {errors.quantity && <p className="text-red-500 text-xs mt-1">{errors.quantity}</p>}
           </div>
 
-          {/* Price */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">Price per Kg (₹)</label>
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -218,7 +218,7 @@ const ListCropForm = () => {
             )}
           </div>
 
-          {/* Phone */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">Contact Phone</label>
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -237,7 +237,7 @@ const ListCropForm = () => {
             )}
           </div>
 
-          {/* Email */}
+          
           <div>
             <label className="block text-gray-700 font-medium mb-1">Contact Email</label>
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -257,7 +257,7 @@ const ListCropForm = () => {
           </div>
         </form>
               
-        {/* Submit Button */}
+        
         <div className="mt-6 sm:mt-8 flex justify-center">
           <button
             type="submit"
