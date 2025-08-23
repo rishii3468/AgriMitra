@@ -313,11 +313,7 @@ const VerifiedFarmerForm = () => {
             {canSubmit ? 'Submit for Verification' : 'Complete All Questions to Continue'}
           </button>
 
-          {canSubmit && (
-            <p className="text-sm text-gray-600 mt-3">
-              Your application will be reviewed within 2-3 business days
-            </p>
-          )}
+          
         </div>
       </div>
     </div>

@@ -68,3 +68,25 @@ export const deleteEquipment = async (req, res) => {
     res.status(500).json({ message: "Server error deleting equipment", error: error.message });
   }
 };
+
+export const updateEquipment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+
+    // Optional: Validate required fields as needed before updating
+
+    const updatedEquipment = await Equipment.findByIdAndUpdate(id, updateData, {
+      new: true, // Return the updated document
+      runValidators: true, // Run schema validations on update
+    });
+
+    if (!updatedEquipment) {
+      return res.status(404).json({ message: "Equipment not found" });
+    }
+
+    res.status(200).json(updatedEquipment);
+  } catch (error) {
+    res.status(500).json({ message: "Server error updating equipment", error: error.message });
+  }
+};

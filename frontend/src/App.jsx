@@ -12,6 +12,8 @@ import KnowledgePage from './pages/KnowledgePage'
 import Equipment from './pages/EquipmentsPage'
 import VerifiedFarmerForm from './pages/VerifyEquipment'
 import CommodityPricesPage from './pages/RealTimePrice'
+import ListEquipmentForm from './pages/ListEquipments'
+import EquipmentPaymentPage from './pages/EquipmentPayment'
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
           <Route path="/equipment" element={<Equipment />} />
           <Route path="/commodity-prices" element={<CommodityPricesPage />} />
           <Route path="/verified-farmer" element={<VerifiedFarmerForm />} />
+          <Route path="/list-equipment" element={<ListEquipmentForm />} />
+          <Route path="/equipment-payment" element={<EquipmentPaymentPage />} />
           <Route path="*" element={<div className="text-center text-red-500">Page Not Found</div>} />
         </Routes>
       </div>
