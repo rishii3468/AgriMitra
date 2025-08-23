@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router";
 
 const markets = ["Delhi", "Mumbai", "Bangalore", "Hyderabad"];
 const crops = ["Wheat", "Rice", "Tomato", "Onion"];
@@ -51,12 +52,11 @@ export default function CommodityPricesPage() {
       <nav className="bg-green-100 p-4 shadow-md flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
         <h1 className="text-2xl font-bold text-green-800">Real Time Market Price</h1>
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
-          <button className="w-full sm:w-auto px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-            Home
-          </button>
-          <button className="w-full sm:w-auto px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-            Community
-          </button>
+          <Link to="/">
+            <button className="w-full sm:w-auto px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+              Home
+            </button>
+          </Link>
         </div>
       </nav>
 
