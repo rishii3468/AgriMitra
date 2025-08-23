@@ -7,6 +7,7 @@ import path from "path"
 import notesRoutes from "./routes/notesRoutes.js"
 import cropRoutes from "./routes/cropRoutes.js"
 import equipmentRoutes from "./routes/equipmentsRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
 import { connectDB } from "./config/db.js"
 import corsOptions from "./config/corsOptions.js"
 import credentials from "./middleware/credentials.js"
@@ -41,6 +42,8 @@ app.use("/api/crops",cropRoutes)
 app.use("/api/notes",notesRoutes)
 
 app.use("/api/equipments",equipmentRoutes)
+
+app.use("/api/users",userRoutes)
 
 
 

@@ -345,4 +345,4 @@ const AgriConnect = () => {
   );
 };
 
-export default AgriMitra;
+export default AgriConnect;

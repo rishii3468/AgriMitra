@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import api from "../lib/axios";
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -19,20 +20,10 @@ export default function SignUp() {
 
   const handleSubmit = async () => {
     try {
-      const res = await fetch("http://localhost:5000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          state: form.state,
-          district: form.district,
-        }),
-      });
-      const data = await res.json();
+      const res = await api.post("/users/register", form);
+      const data = res.data;
       setResult(data.message);
-      if (res.ok) {
+      if (res.status === 200) {
         toast.success("Registration/Login successful!");
         setTimeout(() => {
           navigate("/home");
@@ -56,7 +47,7 @@ export default function SignUp() {
     >
       <div className="w-full max-w-md bg-white/90 rounded-2xl shadow-lg p-6">
         <h2 className="text-2xl font-bold text-center text-green-700 mb-6">
-          Sign Up / Login
+          Sign Up
         </h2>
 
         <input
