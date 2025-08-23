@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", getAllEquipments);
 
-router.post("/", createEquipment);
+router.post("/create", createEquipment);
 
 router.delete("/:id", deleteEquipment);
 

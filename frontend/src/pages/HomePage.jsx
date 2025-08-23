@@ -137,9 +137,11 @@ const AgriConnect = () => {
                     Explore Marketplace
                 </button>
               </Link>
-              <button className="bg-green-700 text-white px-6 py-3 rounded-md hover:bg-green-800 transition-all duration-300 font-semibold">
-                Join Community
-              </button>
+              <Link to='/commodity-prices'>
+                <button className="bg-green-700 text-white px-6 py-3 rounded-md hover:bg-green-800 transition-all duration-300 font-semibold">
+                  Real Time Market Price
+                </button>
+              </Link>
             </div>
           </div>
         </div>
