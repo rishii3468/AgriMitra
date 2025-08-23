@@ -6,10 +6,11 @@ import path from "path"
 
 import notesRoutes from "./routes/notesRoutes.js"
 import cropRoutes from "./routes/cropRoutes.js"
+import equipmentRoutes from "./routes/equipmentsRoutes.js"
 import { connectDB } from "./config/db.js"
 import corsOptions from "./config/corsOptions.js"
 import credentials from "./middleware/credentials.js"
-import { url } from "inspector"
+
 
 dotenv.config();
 
@@ -38,6 +39,10 @@ app.use(express.json())
 app.use("/api/crops",cropRoutes)
 
 app.use("/api/notes",notesRoutes)
+
+app.use("/api/equipments",equipmentRoutes)
+
+
 
 if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname,"../frontend/dist")))
