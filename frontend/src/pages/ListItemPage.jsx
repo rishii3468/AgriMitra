@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Leaf, Phone, Mail, Calendar, Package, DollarSign, User, MapPin } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import api from "../lib/axios";
+import { toast } from "react-hot-toast";
 
 const ListCropForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     cropName: "",
     farmerName: "",
@@ -37,23 +40,40 @@ const ListCropForm = () => {
     return newErrors;
   };
 
+  const createCrop = async (cropData) => {
+    try {   
+      const response = await api.post("/crops/create", cropData);
+      console.log("Crop created:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error creating crop:", error);
+      throw error;
+    }
+  };
+      
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
       console.log("Submitted Data:", formData);
-      alert("Crop listed successfully!");
-      setFormData({
-        cropName: "",
-        farmerName: "",
-        city: "",
-        state: "",
-        harvestedDate: "",
-        quantity: "",
-        pricePerKg: "",
-        contactPhone: "",
-        contactEmail: "",
+      createCrop({
+        cropName: formData.cropName,
+        farmerName: formData.farmerName,
+        location: { 
+          city: formData.city,
+          state: formData.state 
+        },
+        harvestedDate: formData.harvestedDate,
+        quantityKg: Number(formData.quantity),
+        pricePerKg: Number(formData.pricePerKg),
+        contactInfo: {
+          phone: formData.contactPhone,
+          email: formData.contactEmail
+        }
       });
+      toast.success("Crop listed successfully!");
+      navigate("/marketplace");
     } else {
       setErrors(newErrors);
     }

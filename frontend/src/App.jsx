@@ -6,6 +6,7 @@ import PaymentPage from './pages/PaymentPage'
 import SignUp from './pages/RegistrationPage'
 import Login from './pages/LoginPage'
 import ListCropForm from './pages/ListItemPage'
+import ComingSoon from './pages/ComingSoon'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/list-crop" element={<ListCropForm />} />
+          <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="*" element={<div className="text-center text-red-500">Page Not Found</div>} />
         </Routes>
       </div>
