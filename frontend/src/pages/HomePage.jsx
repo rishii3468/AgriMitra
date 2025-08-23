@@ -150,29 +150,6 @@ const AgriConnect = () => {
         </div>
       </div>
 
-      
-      <div className="bg-gray-50 py-12 md:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 text-center">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600 mb-2">50,000+</div>
-              <div className="text-sm sm:text-base text-gray-600">Active Farmers</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600 mb-2">2.5M kg</div>
-              <div className="text-sm sm:text-base text-gray-600">Produce Traded</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600 mb-2">15,000+</div>
-              <div className="text-sm sm:text-base text-gray-600">Equipment Shared</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600 mb-2">500+</div>
-              <div className="text-sm sm:text-base text-gray-600">Communities</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       
       <div className="py-12 md:py-16 lg:py-20 bg-white">
