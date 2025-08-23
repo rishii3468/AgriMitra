@@ -1,45 +1,33 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom';
 
 const AgriConnect = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      
+      {/* NAVBAR */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             
+            {/* Logo */}
             <div className="flex items-center">
               <div className="text-green-600 text-xl font-bold flex items-center">
-                <span className="mr-2">🌱</span>
-               AgriMitra
+                <span className="mr-2">🌱</span> AgriMitra
               </div>
             </div>
-            
-            
-            <nav className="hidden md:flex space-x-8">
-              <Link to={'/marketplace'} className="text-gray-700 hover:text-green-600 transition-colors">
-                Marketplace
-              </Link>
 
-              <Link to={'/equipment'} className="text-gray-700 hover:text-green-600 transition-colors">
-                Equipment
-              </Link>
-              <Link to={'/community-notes'} >
-                <p href="#" className="text-gray-700 hover:text-green-600 transition-colors">Community</p>
-              </Link>
-              <Link to={'/knowledge'} className="text-gray-700 hover:text-green-600 transition-colors">
-                Knowledge
-              </Link>
-              
-              <Link to={'/about-us'} className="text-gray-700 hover:text-green-600 transition-colors">
-                About Us
-              </Link>
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex space-x-8">
+              <Link to="/marketplace" className="text-gray-700 hover:text-green-600 transition-colors">Marketplace</Link>
+              <Link to="/equipment" className="text-gray-700 hover:text-green-600 transition-colors">Equipment</Link>
+              <Link to="/community-notes" className="text-gray-700 hover:text-green-600 transition-colors">Community</Link>
+              <Link to="/knowledge" className="text-gray-700 hover:text-green-600 transition-colors">Knowledge</Link>
+              <Link to="/about-us" className="text-gray-700 hover:text-green-600 transition-colors">About Us</Link>
             </nav>
-            
-            
+
+            {/* Right Side */}
             <div className="flex items-center space-x-4">
               <select className="border-none bg-transparent text-gray-700 hidden sm:block focus:outline-none">
                 <option>English</option>
@@ -53,8 +41,8 @@ const AgriConnect = () => {
                   Sign Up
                 </button>
               </Link>
-              
-              
+
+              {/* Hamburger */}
               <button 
                 className="md:hidden text-gray-700 p-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -72,26 +60,16 @@ const AgriConnect = () => {
             </div>
           </div>
         </div>
-        
-      
+
+        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t shadow-lg">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link to={'/marketplace'} >
-                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">MarketPlace</p>
-              </Link>
-              <Link to={'/equipment'} className="text-gray-700 hover:text-green-600 transition-colors">
-                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Equipment</p>
-              </Link>
-              <Link to={'/community-notes'} >
-                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Community</p>
-              </Link>
-              <Link to={'/knowledge'} >
-                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</p>
-              </Link>
-              <Link to={'/about-us'} >
-                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">About Us</p>
-              </Link>
+              <Link to="/marketplace" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Marketplace</Link>
+              <Link to="/equipment" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Equipment</Link>
+              <Link to="/community-notes" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Community</Link>
+              <Link to="/knowledge" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</Link>
+              <Link to="/about-us" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">About Us</Link>
               <div className="pt-4 border-t border-gray-200 mt-4">
                 <select className="w-full border border-gray-300 rounded px-3 py-2 text-gray-700 mb-2 focus:outline-none focus:ring-2 focus:ring-green-500">
                   <option>English</option>
@@ -101,9 +79,7 @@ const AgriConnect = () => {
                   <button className="w-full text-left px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors mb-2">Login</button>
                 </Link>
                 <Link to="/register">
-                  <button className="w-full bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-700 transition-colors mb-3">
-                    Sign Up
-                  </button>
+                  <button className="w-full bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-700 transition-colors mb-3">Sign Up</button>
                 </Link>
               </div>
             </div>
@@ -111,9 +87,8 @@ const AgriConnect = () => {
         )}
       </header>
 
-      
+      {/* HERO SECTION */}
       <div className="relative min-h-[500px] md:min-h-[600px] lg:min-h-screen overflow-hidden">
-        
         <div 
           className="absolute inset-0 bg-gradient-to-r from-green-900 via-green-700 to-green-600"
           style={{
@@ -137,7 +112,7 @@ const AgriConnect = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to='/marketplace'>
                 <button className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md hover:bg-white hover:text-green-600 transition-all duration-300 font-semibold">
-                    Explore Marketplace
+                  Explore Marketplace
                 </button>
               </Link>
               <Link to='/commodity-prices'>
@@ -150,8 +125,7 @@ const AgriConnect = () => {
         </div>
       </div>
 
-
-      
+      {/* HOW IT WORKS SECTION */}
       <div className="py-12 md:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
@@ -162,7 +136,7 @@ const AgriConnect = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            
+            {/* Sell Produce */}
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,7 +149,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            
+            {/* Buy Produce */}
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -188,7 +162,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            
+            {/* Rent Equipment */}
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -201,7 +175,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            
+            {/* Community Help */}
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,55 +191,67 @@ const AgriConnect = () => {
         </div>
       </div>
 
-      
+      {/* WHY CHOOSE AGRIMITRA SECTION */}
       <div className="py-12 md:py-16 lg:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose AgriMitra</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
+              Empowering farmers with modern tools and fair market access.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            
-          
-      
+            {/* Add your "Why Choose" content here */}
+            <div className="text-center">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Fair Pricing</h3>
+              <p className="text-gray-600">Direct connection between farmers and buyers ensures fair market prices.</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Modern Tools</h3>
+              <p className="text-gray-600">Access to latest farming equipment and technology solutions.</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Community Support</h3>
+              <p className="text-gray-600">Join a network of farmers sharing knowledge and resources.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* FOOTER */}
       <footer className="bg-gray-800 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="text-xl font-bold mb-4 flex items-center">
-                <span className="mr-2">🌱</span>
-               AgriMitra
+                <span className="mr-2">🌱</span> AgriMitra
               </div>
               <p className="text-gray-300 text-sm mb-4 max-w-xs">
                 Empowering farmers through technology and fair trade practices.
               </p>
             </div>
 
-           
             <div>
               <h4 className="text-lg font-semibold mb-4">Platform</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Farmers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Equipment</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
+                <li><Link to="/marketplace" className="hover:text-white transition-colors">Marketplace</Link></li>
+                <li><Link to="/equipment" className="hover:text-white transition-colors">Equipment</Link></li>
+                <li><Link to="/community-notes" className="hover:text-white transition-colors">Community</Link></li>
               </ul>
             </div>
 
-            
             <div>
               <h4 className="text-lg font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Knowledge Hub</a></li>               
+                <li><Link to="/knowledge" className="hover:text-white transition-colors">Knowledge Hub</Link></li>               
               </ul>
             </div>
 
-            
             <div>
               <h4 className="text-lg font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
-                <Link to={'/about-us'}>
-                  <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                </Link>
+                <li><Link to="/about-us" className="hover:text-white transition-colors">About</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>
