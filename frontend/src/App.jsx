@@ -10,6 +10,7 @@ import ComingSoon from './pages/ComingSoon'
 import AboutPage from './pages/AboutUs'
 import KnowledgePage from './pages/KnowledgePage'
 import Equipment from './pages/EquipmentsPage'
+import VerifiedFarmerForm from './pages/VerifyEquipment'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="/knowledge" element={<KnowledgePage />} />
           <Route path="/equipment" element={<Equipment />} />
+          <Route path="/verified-farmer" element={<VerifiedFarmerForm />} />
           <Route path="*" element={<div className="text-center text-red-500">Page Not Found</div>} />
         </Routes>
       </div>
