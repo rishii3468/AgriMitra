@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 import cors from "cors" 
 import path from "path"
 
-
+import serveStatic from "serve-static"
 import notesRoutes from "./routes/notesRoutes.js"
 import cropRoutes from "./routes/cropRoutes.js"
 import equipmentRoutes from "./routes/equipmentsRoutes.js"
@@ -31,11 +31,16 @@ app.use(express.urlencoded({extended: true}))
 app.use(credentials);
 
 //CORS
-app.use(cors(corsOptions));
+if(process.env.NODE_ENV !== "production"){
+    app.use(cors(corsOptions));
+}
+
 
 
 
 app.use(express.json()) 
+
+
 
 app.use("/api/crops",cropRoutes)
 
@@ -45,15 +50,19 @@ app.use("/api/equipments",equipmentRoutes)
 
 app.use("/api/users",userRoutes)
 
+console.log("dirname:",__dirname);
 
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname,"../frontend/dist")))
+app.use(serveStatic(path.join(__dirname, '../frontend/dist'), {
+    index: ['index.html'],
+    maxAge: '1d', // Cache control
+    setHeaders: (res, path) => {
+        if (path.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'no-cache');
+        }
+    }
+}));
 
-    app.get("*", (req,res) => {
-        res.sendFile(path.join(__dirname,"../frontend","dist","index.html"))
-    })
-}
 
 
     
