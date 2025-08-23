@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -7,44 +9,42 @@ export default function SignUp() {
     phone: "",
     state: "",
     district: "",
-    otp: "",
   });
   const [result, setResult] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
-  const sendOTP = async () => {
-    const res = await fetch("http://localhost:5000/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone: form.phone }),
-    });
-    const data = await res.json();
-    setResult(data.message);
-  };
-
-  const loginUser = async (credentials) => {
+  const handleSubmit = async () => {
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          state: form.state,
+          district: form.district,
+        }),
       });
       const data = await res.json();
+      setResult(data.message);
       if (res.ok) {
-        // Save token to localStorage or context
-        localStorage.setItem("token", data.token);
-        alert("Login successful");
+        toast.success("Registration/Login successful!");
+        setTimeout(() => {
+          navigate("/home");
+        }, 1500);
       } else {
-        alert(data.message);
+        toast.error(data.message || "Something went wrong");
       }
     } catch (err) {
-      console.error("Login error:", err);
+      console.error("Error:", err);
+      toast.error("Request failed");
     }
   };
-
 
   return (
     <div
@@ -56,8 +56,9 @@ export default function SignUp() {
     >
       <div className="w-full max-w-md bg-white/90 rounded-2xl shadow-lg p-6">
         <h2 className="text-2xl font-bold text-center text-green-700 mb-6">
-          Sign Up
+          Sign Up / Login
         </h2>
+
         <input
           type="text"
           id="name"
@@ -90,7 +91,6 @@ export default function SignUp() {
           placeholder="State"
           className="w-full p-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-3"
         />
-
         <input
           type="text"
           id="district"
@@ -99,30 +99,16 @@ export default function SignUp() {
           placeholder="District"
           className="w-full p-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-3"
         />
-        <button
-          onClick={sendOTP}
-          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 mb-4 font-semibold"
-        >
-          Send OTP
-        </button>
-        <input
-          type="text"
-          id="state"
-          value={form.state}
-          onChange={handleChange}
-          placeholder="State"
-          className="w-full p-3 border border-green-300 shadow-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-3"
-        />
 
         <button
-          onClick={loginUser}
+          onClick={handleSubmit}
           className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 font-semibold"
         >
-          Verify OTP
+          Submit
         </button>
         <p className="text-center text-green-800 font-medium mt-4">{result}</p>
         <p className="text-center text-gray-600 text-sm mt-2">
-          After verification, you will be redirected to the homepage.
+          After submission, you will be redirected to the homepage.
         </p>
       </div>
     </div>

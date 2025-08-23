@@ -27,7 +27,9 @@ const AgriConnect = () => {
               <Link to={'/equipment'} className="text-gray-700 hover:text-green-600 transition-colors">
                 Equipment
               </Link>
-              <a href="#" className="text-gray-700 hover:text-green-600 transition-colors">Community</a>
+              <Link to={'/community-notes'} >
+                <p href="#" className="text-gray-700 hover:text-green-600 transition-colors">Community</p>
+              </Link>
               <Link to={'/knowledge'} className="text-gray-700 hover:text-green-600 transition-colors">
                 Knowledge
               </Link>
@@ -81,8 +83,9 @@ const AgriConnect = () => {
               <Link to={'/equipment'} className="text-gray-700 hover:text-green-600 transition-colors">
                 <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Equipment</p>
               </Link>
-
-              <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Community</p>
+              <Link to={'/community-notes'} >
+                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Community</p>
+              </Link>
               <Link to={'/knowledge'} >
                 <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</p>
               </Link>

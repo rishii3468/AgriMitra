@@ -14,6 +14,7 @@ import VerifiedFarmerForm from './pages/VerifyEquipment'
 import CommodityPricesPage from './pages/RealTimePrice'
 import ListEquipmentForm from './pages/ListEquipments'
 import EquipmentPaymentPage from './pages/EquipmentPayment'
+import CommunityNotesPage from './pages/CommunityPage'
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/verified-farmer" element={<VerifiedFarmerForm />} />
           <Route path="/list-equipment" element={<ListEquipmentForm />} />
           <Route path="/equipment-payment" element={<EquipmentPaymentPage />} />
+          <Route path="/community-notes" element={<CommunityNotesPage />} />
           <Route path="*" element={<div className="text-center text-red-500">Page Not Found</div>} />
         </Routes>
       </div>

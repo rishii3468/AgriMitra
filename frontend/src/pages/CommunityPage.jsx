@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router";
 
 export default function CommunityNotesPage() {
   const [notes, setNotes] = useState([]);
@@ -113,10 +114,12 @@ export default function CommunityNotesPage() {
     <div className="bg-gray-50 min-h-screen">
       {/* Top Navigation */}
       <nav className="flex justify-between items-center px-4 sm:px-6 py-4 bg-white border-b shadow-sm">
-        <button className="flex items-center gap-2 text-green-700 hover:opacity-80">
-          <span className="text-2xl">🌱</span>
-          <span className="text-2xl font-extrabold">AgriMitra</span>
-        </button>
+        <Link to="/">
+          <button className="flex items-center gap-2 text-green-700 hover:opacity-80">
+            <span className="text-2xl">🌱</span>
+            <span className="text-2xl font-extrabold">AgriMitra</span>
+          </button>
+        </Link>
 
         <div className="flex gap-2 sm:gap-3">
           <button 
@@ -125,9 +128,7 @@ export default function CommunityNotesPage() {
           >
             Write Note
           </button>
-          <button className="px-2 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-lg sm:rounded-xl bg-green-100 text-green-700 border border-green-400 hover:bg-green-200 transition">
-            My Notes
-          </button>
+         
         </div>
       </nav>
 
