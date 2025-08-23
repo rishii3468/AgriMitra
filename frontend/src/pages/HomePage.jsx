@@ -329,13 +329,12 @@ const AgriConnect = () => {
                   <li><a href="#" className="hover:text-white transition-colors">About</a></li>
                 </Link>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
-            © 2025 AgriMitra. Built for farmers, by farmers.
+            © 2025 AgriMitra. Built for farmers
           </div>
         </div>
       </footer>
@@ -343,4 +342,4 @@ const AgriConnect = () => {
   );
 };
 
-export default AgriConnect;
+export default AgriMitra;
