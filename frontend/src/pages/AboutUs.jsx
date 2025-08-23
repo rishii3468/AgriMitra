@@ -18,21 +18,21 @@ export default function AboutPage() {
       {/* Header */}
       <div className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
+          <div className="flex flex-col sm:flex-row items-center justify-between h-auto sm:h-16 py-2 sm:py-0">
+            <div className="flex items-center mb-2 sm:mb-0">
               <button className="mr-4 p-2 rounded-md hover:bg-gray-100">
                 <span className="text-gray-600">←</span>
               </button>
               <div className="flex items-center">
-                <div className="w-8 h-8  rounded-md flex items-center justify-center mr-3">
+                <div className="w-8 h-8 rounded-md flex items-center justify-center mr-3">
                   <span className="text-white text-sm font-bold">🌱</span>
                 </div>
                 <span className="text-lg sm:text-xl font-semibold text-gray-900">
-                  AgriConnect
+                  AgriMitra
                 </span>
               </div>
             </div>
-            <div className="flex space-x-2 sm:space-x-3">
+            <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3">
               <button className="px-3 sm:px-4 py-2 border border-gray-300 rounded-md text-xs sm:text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
                 Home
               </button>
@@ -48,7 +48,7 @@ export default function AboutPage() {
       <div className="bg-gradient-to-r from-green-600 to-green-800 text-white py-12 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-6">
-            About AgriConnect
+            About AgriMitra
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed">
             Bridging the gap between farmers and buyers through technology, 
@@ -67,7 +67,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-base sm:text-lg text-gray-700 leading-relaxed">
                 <p>
-                  At AgriConnect, we envision a world where every farmer has direct access to 
+                  At AgriMitra, we envision a world where every farmer has direct access to 
                   fair markets, cutting-edge agricultural knowledge, and sustainable income opportunities.
                 </p>
                 <p>
@@ -84,7 +84,7 @@ export default function AboutPage() {
             </div>
             <div className="relative">
               <div className="bg-green-100 rounded-2xl p-6 sm:p-8 text-center">
-                <div className="text-5xl sm:text-6xl mb-4">🌾</div>
+                <div className="text-5xl sm:text-6xl mb-4">🌱</div>
                 <h3 className="text-xl sm:text-2xl font-bold text-green-800 mb-4">
                   Empowering Agriculture
                 </h3>
@@ -101,7 +101,7 @@ export default function AboutPage() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
             Why We Started
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {[
               { icon: "💔", title: "The Problem", desc: "Farmers struggling with middlemen taking unfair cuts, leaving hardworking cultivators with minimal profits despite growing quality crops." },
               { icon: "💡", title: "The Solution", desc: "Technology bridges the gap – creating a platform where farmers showcase produce and connect with verified buyers instantly." },
@@ -119,7 +119,6 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
-        
 
         {/* Our Team Section */}
         <section className="mb-16 lg:mb-20">
@@ -149,11 +148,7 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
-        
       </div>
-
-     
-      
     </div>
   );
 }
