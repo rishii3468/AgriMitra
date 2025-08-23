@@ -1,10 +1,12 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import api from "../lib/axios";
 
 export default function PaymentPage() {
   const location = useLocation();
   const { crop } = location.state || {};
-
+  const navigate = useNavigate();
   if (!crop) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-green-50">
@@ -15,9 +17,26 @@ export default function PaymentPage() {
     );
   }
 
+  const handleBuy = async () => {
+    try{
+      await api.delete('/crops/'+crop._id);
+      toast.success("Simulated payment successful!");
+      setTimeout(() => {
+        navigate("/coming-soon");
+      }, 2000);
+    } catch(err){
+      console.error("Error deleting crop:", err);
+      toast.error("Error processing your order. Please try again.");
+      return;
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-green-50 p-4">
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-6">
+        <Link to="/marketplace">
+          <p className="text-sm text-gray-500 mb-4">Back</p>
+        </Link>
         <h2 className="text-2xl font-bold text-green-700 text-center mb-6">
           Payment Details
         </h2>
@@ -48,12 +67,12 @@ export default function PaymentPage() {
           </h3>
           <p className="text-gray-700">
             Total Payable Amount:{" "}
-            <span className="text-green-700 font-bold">{crop.quantity * crop.price}</span>
+            <span className="text-green-700 font-bold">{(crop?.pricePerKg || 0) * (crop?.quantityKg || 0)}</span>
           </p>
         </div>
 
         {/* Proceed Button */}
-        <button className="w-full mt-6 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 font-semibold shadow-md">
+        <button type="submit" onClick={handleBuy} className="w-full mt-6 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 font-semibold shadow-md">
           Proceed to Pay
         </button>
       </div>

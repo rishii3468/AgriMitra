@@ -2,7 +2,7 @@ import Crop from "../models/Crops.js";
 
 export const getAllCrops = async (req, res) => {
   try {
-    const crops = await Crop.find({});
+    const crops = await Crop.find();
     res.status(200).json(crops);
   } catch (error) {
     res.status(500).json({ message: "Server error fetching crops", error: error.message });

@@ -25,7 +25,13 @@ const AgriConnect = () => {
               </Link>
               <a href="#" className="text-gray-700 hover:text-green-600 transition-colors">Equipment</a>
               <a href="#" className="text-gray-700 hover:text-green-600 transition-colors">Community</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 transition-colors">Knowledge</a>
+              <Link to={'/knowledge'} className="text-gray-700 hover:text-green-600 transition-colors">
+                Knowledge
+              </Link>
+              
+              <Link to={'/about-us'} className="text-gray-700 hover:text-green-600 transition-colors">
+                About Us
+              </Link>
             </nav>
             
             {/* Right side */}
@@ -66,9 +72,12 @@ const AgriConnect = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t shadow-lg">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Marketplace</a>
+              <Link to={'/marketplace'} className="text-gray-700 hover:text-green-600 transition-colors">
+                Marketplace
+              </Link>
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Equipment</a>
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Community</a>
+              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</a>
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</a>
               <div className="pt-4 border-t border-gray-200 mt-4">
                 <select className="w-full border border-gray-300 rounded px-3 py-2 text-gray-700 mb-2 focus:outline-none focus:ring-2 focus:ring-green-500">
@@ -304,7 +313,9 @@ const AgriConnect = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+                <Link to={'/about-us'}>
+                  <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+                </Link>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
               </ul>
