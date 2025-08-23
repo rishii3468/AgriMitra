@@ -7,6 +7,15 @@ const VerifiedFarmerForm = () => {
 
   const questions = [
     {
+      id: 0,
+      title: "Equipment Name",
+      question: "Enter the name/model of your equipment",
+      type: "text",
+      placeholder: "e.g., John Deere 5075E Tractor, Mahindra 575 DI",
+      condition: "Please provide the complete equipment name or model",
+      required: true
+    },
+    {
       id: 1,
       title: "Serial Number / Unique ID",
       question: "Enter the product's serial number (if available)",
@@ -70,6 +79,8 @@ const VerifiedFarmerForm = () => {
     if (!answer) return 'pending';
 
     switch (questionId) {
+      case 0:
+        return answer.main && answer.main.trim().length >= 3 ? 'valid' : 'invalid';
       case 1:
         return answer.main && /^[A-Za-z0-9]+$/.test(answer.main) ? 'valid' : 'invalid';
       case 2:
