@@ -40,9 +40,7 @@ export default function MarketPlace() {
 
     getCrops();
   }, [crops.length]);
-  // if (loading) return <div>Loading crops...</div>;
-  // if (error) return <div>{error}</div>;
-  // Filter crops based on search term and category
+  
   const filteredCrops = crops.filter((crop) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
 
@@ -62,7 +60,7 @@ export default function MarketPlace() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Top bar */}
+      
       <nav className="flex justify-between items-center px-4 sm:px-6 py-4 bg-white border-b">
         <Link to='/'>
           <button className="flex items-center gap-2 text-green-700 hover:opacity-80">
@@ -87,14 +85,14 @@ export default function MarketPlace() {
         </div>
       </nav>
 
-      {/* Hero */}
+      
       <section className="px-4 sm:px-6 py-6">
         <h2 className="text-3xl sm:text-4xl font-bold">Crop Marketplace</h2>
         <p className="text-gray-600 mt-1">
           Fresh produce directly from verified farmers
         </p>
 
-        {/* Search + Filters */}
+        
         <div className="flex flex-col md:flex-row gap-3 mt-5">
           <div className="flex-1">
             <input
@@ -119,7 +117,7 @@ export default function MarketPlace() {
         </div>
       </section>
 
-      {/* Cards */}
+      
       <section className="grid gap-6 px-4 sm:px-6 pb-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredCrops.length > 0 ? (
           filteredCrops.map((crop, idx) => (
@@ -128,7 +126,7 @@ export default function MarketPlace() {
               className="bg-white rounded-2xl border shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition overflow-hidden"
             >
               <img
-                src={crop.image || '/default-image.jpg'} // fallback if none
+                src={crop.image || '/default-image.jpg'} 
                 alt={crop.cropName}
                 className="h-44 w-full object-cover"
                 loading="lazy"

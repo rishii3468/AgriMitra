@@ -51,14 +51,14 @@ export default function EquipmentPage() {
         </div>
       </nav>
 
-      {/* Hero */}
+      
       <section className="px-4 sm:px-6 py-6">
         <h2 className="text-3xl sm:text-4xl font-bold text-green-800">Equipment Marketplace</h2>
         <p className="text-gray-600 mt-1">
           Buy or Rent farming equipment directly from trusted farmers. Explore verified tools and machines to make your farming more efficient.
         </p>
 
-        {/* Search */}
+        
         <div className="mt-5">
           <input
             type="text"
@@ -70,7 +70,7 @@ export default function EquipmentPage() {
         </div>
       </section>
 
-      {/* Equipment list */}
+      
       <section className="px-4 sm:px-6 pb-12 flex flex-col gap-4">
         {filteredEquipments.length > 0 ? (
           filteredEquipments.map((eq, idx) => (
@@ -78,7 +78,7 @@ export default function EquipmentPage() {
               key={idx}
               className="bg-white rounded-xl border border-green-100 shadow hover:shadow-md transition flex flex-col sm:flex-row items-start sm:items-center p-4 gap-4"
             >
-              {/* Image */}
+              
               <img
                 src={eq.image || "/default-equipment.jpg"}
                 alt={eq.name}
@@ -86,7 +86,7 @@ export default function EquipmentPage() {
                 loading="lazy"
               />
 
-              {/* Details */}
+              
               <div className="flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h3 className="font-semibold text-lg text-green-800">{eq.name}</h3>
@@ -105,11 +105,11 @@ export default function EquipmentPage() {
                 </div>
               </div>
 
-              {/* Actions */}
+              
               <div className="flex gap-2 w-full sm:w-auto">
                 <Link
                   to="/equipment-payment"
-                  state={{ equipment: eq, mode: "buy" }} // or mode: "rent"
+                  state={{ equipment: eq, mode: "buy" }} 
                 >
                   <button className="flex-1 sm:flex-none bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition text-center shadow">
                     Buy Now

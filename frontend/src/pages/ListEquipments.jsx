@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, MapPin, User, Wrench, DollarSign } from 'lucide-react';
-import api from '../lib/axios'; // make sure this points to your axios setup
+import api from '../lib/axios'; 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
@@ -81,9 +81,9 @@ const ListEquipment = () => {
             <p className="text-gray-600 text-lg">Connect with farmers by listing your agricultural equipment</p>
           </div>
 
-          {/* Form */}
+          
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {/* Equipment Name and Owner Name */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Equipment Name</label>
@@ -118,7 +118,7 @@ const ListEquipment = () => {
               </div>
             </div>
 
-            {/* City and State */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">City</label>
@@ -152,7 +152,7 @@ const ListEquipment = () => {
               </div>
             </div>
 
-            {/* Description */}
+            
             <div>
               <label className="block text-gray-700 font-medium mb-2">Description</label>
               <textarea
@@ -166,7 +166,7 @@ const ListEquipment = () => {
               />
             </div>
 
-            {/* Buy Price and Rent Price */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Buy Price (₹)</label>
@@ -204,7 +204,7 @@ const ListEquipment = () => {
             {error && <p className="text-red-600 text-center">{error}</p>}
             {success && <p className="text-green-600 text-center">{success}</p>}
 
-            {/* Submit Button */}
+            
             <div className="flex justify-center pt-6">
               <button
                 type="submit"

@@ -41,7 +41,7 @@ export default function PaymentPage() {
           Payment Details
         </h2>
 
-        {/* Order Summary */}
+        
         <div className="border border-green-200 rounded-lg p-4 mb-4 shadow-sm">
           <h3 className="text-lg font-semibold text-green-700 mb-3">
             Order Summary
@@ -60,7 +60,7 @@ export default function PaymentPage() {
           </div>
         </div>
 
-        {/* Payment Info */}
+        
         <div className="border border-green-200 rounded-lg p-4 shadow-sm">
           <h3 className="text-lg font-semibold text-green-700 mb-3">
             Payment Info
@@ -71,7 +71,7 @@ export default function PaymentPage() {
           </p>
         </div>
 
-        {/* Proceed Button */}
+        
         <button type="submit" onClick={handleBuy} className="w-full mt-6 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 font-semibold shadow-md">
           Proceed to Pay
         </button>

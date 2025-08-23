@@ -5,7 +5,7 @@ import api from "../lib/axios";
 
 export default function EquipmentPaymentPage() {
     const location = useLocation();
-    const { equipment, mode } = location.state || {}; // mode: 'buy' or 'rent'
+    const { equipment, mode } = location.state || {}; 
     const navigate = useNavigate();
     if (!equipment) {
         return (
@@ -22,12 +22,12 @@ export default function EquipmentPaymentPage() {
 
     const handleProceed = async () => {
         try {
-            // Simulate order logic—for example, delete equipment on buy or create rental record on rent
+           
             if (mode === "buy") {
                 await api.delete(`/equipments/${equipment._id}`);
                 toast.success("Purchase successful!");
             } else if (mode === "rent") {
-                // Add your rent flow here (e.g. POST to /rentals or similar)
+                
                 toast.success("Rental confirmed!");
             }
             setTimeout(() => {
@@ -49,7 +49,7 @@ export default function EquipmentPaymentPage() {
                     Payment Details
                 </h2>
 
-                {/* Order Summary */}
+                
                 <div className="border border-green-200 rounded-lg p-4 mb-4 shadow-sm">
                     <h3 className="text-lg font-semibold text-green-700 mb-3">
                         Order Summary
@@ -73,7 +73,7 @@ export default function EquipmentPaymentPage() {
                     </div>
                 </div>
 
-                {/* Payment Info */}
+                
                 <div className="border border-green-200 rounded-lg p-4 shadow-sm">
                     <h3 className="text-lg font-semibold text-green-700 mb-3">Payment Info</h3>
                     <p className="text-gray-700">
@@ -82,7 +82,7 @@ export default function EquipmentPaymentPage() {
                     </p>
                 </div>
 
-                {/* Proceed Button */}
+                
                 <button
                     onClick={handleProceed}
                     className="w-full mt-6 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 font-semibold shadow-md"

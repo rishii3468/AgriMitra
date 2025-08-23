@@ -6,11 +6,11 @@ const AgriConnect = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
+      
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
+            
             <div className="flex items-center">
               <div className="text-green-600 text-xl font-bold flex items-center">
                 <span className="mr-2">🌱</span>
@@ -18,7 +18,7 @@ const AgriConnect = () => {
               </div>
             </div>
             
-            {/* Desktop Navigation */}
+            
             <nav className="hidden md:flex space-x-8">
               <Link to={'/marketplace'} className="text-gray-700 hover:text-green-600 transition-colors">
                 Marketplace
@@ -37,7 +37,7 @@ const AgriConnect = () => {
               </Link>
             </nav>
             
-            {/* Right side */}
+            
             <div className="flex items-center space-x-4">
               <select className="border-none bg-transparent text-gray-700 hidden sm:block focus:outline-none">
                 <option>English</option>
@@ -52,7 +52,7 @@ const AgriConnect = () => {
                 </button>
               </Link>
               
-              {/* Mobile menu button */}
+              
               <button 
                 className="md:hidden text-gray-700 p-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -108,9 +108,9 @@ const AgriConnect = () => {
         )}
       </header>
 
-      {/* Hero Section - Fixed background image */}
+      
       <div className="relative min-h-[500px] md:min-h-[600px] lg:min-h-screen overflow-hidden">
-        {/* Background image with proper sizing */}
+        
         <div 
           className="absolute inset-0 bg-gradient-to-r from-green-900 via-green-700 to-green-600"
           style={{
@@ -147,7 +147,7 @@ const AgriConnect = () => {
         </div>
       </div>
 
-      {/* Stats Section - Enhanced responsiveness */}
+      
       <div className="bg-gray-50 py-12 md:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 text-center">
@@ -171,7 +171,7 @@ const AgriConnect = () => {
         </div>
       </div>
 
-      {/* How AgriMitra Works Section - Improved responsive grid */}
+      
       <div className="py-12 md:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
@@ -182,7 +182,7 @@ const AgriConnect = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {/* Sell Produce */}
+            
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +195,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            {/* Buy Produce */}
+            
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -208,7 +208,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            {/* Rent Equipment */}
+            
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -221,7 +221,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            {/* Community Help */}
+            
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -237,14 +237,14 @@ const AgriConnect = () => {
         </div>
       </div>
 
-      {/* Features Section - Enhanced with better icons */}
+      
       <div className="py-12 md:py-16 lg:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose AgriMitra</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {/* Secure Transactions */}
+            
             <div className="text-center">
               <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-8 h-8 md:w-10 md:h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -257,7 +257,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            {/* Fair Pricing */}
+            
             <div className="text-center">
               <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-8 h-8 md:w-10 md:h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,7 +270,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            {/* Wide Network */}
+            
             <div className="text-center">
               <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-8 h-8 md:w-10 md:h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -286,11 +286,11 @@ const AgriConnect = () => {
         </div>
       </div>
 
-      {/* Footer - Enhanced responsiveness */}
+      
       <footer className="bg-gray-800 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* AgriMitra */}
+            
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="text-xl font-bold mb-4 flex items-center">
                 <span className="mr-2">🌱</span>
@@ -301,7 +301,7 @@ const AgriConnect = () => {
               </p>
             </div>
 
-            {/* Platform */}
+           
             <div>
               <h4 className="text-lg font-semibold mb-4">Platform</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
@@ -311,7 +311,7 @@ const AgriConnect = () => {
               </ul>
             </div>
 
-            {/* Resources */}
+            
             <div>
               <h4 className="text-lg font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
@@ -321,7 +321,7 @@ const AgriConnect = () => {
               </ul>
             </div>
 
-            {/* Company */}
+            
             <div>
               <h4 className="text-lg font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-300 text-sm">

@@ -61,7 +61,7 @@ export default function CommodityPricesPage() {
       </nav>
 
       <div className="p-6 max-w-7xl mx-auto flex-1 flex flex-col gap-8">
-        {/* Search Bar */}
+        
         <div className="flex flex-col sm:flex-row gap-4">
           <select
             value={selectedCrop}
@@ -93,7 +93,7 @@ export default function CommodityPricesPage() {
           </button>
         </div>
 
-        {/* Today's Price */}
+        
         {loading ? (
           <div>Loading market data...</div>
         ) : (
@@ -104,7 +104,7 @@ export default function CommodityPricesPage() {
           )
         )}
 
-        {/* Compare Prices */}
+        
         <div className="bg-white p-4 rounded shadow hover:shadow-lg transition flex flex-col gap-4">
           <h2 className="text-xl font-bold">Compare Prices Across Markets</h2>
           <select
@@ -130,7 +130,7 @@ export default function CommodityPricesPage() {
           )}
         </div>
 
-        {/* Graph Link */}
+        
         <div className="text-center">
           <button
             onClick={openGraph}

@@ -220,7 +220,7 @@ const VerifiedFarmerForm = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Header */}
+        
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
@@ -231,7 +231,7 @@ const VerifiedFarmerForm = () => {
           </div>
         </div>
 
-        {/* Questions */}
+        
         <div className="space-y-4">
           {questions.map((question, index) => {
             const isOpen = openQuestion === question.id;
@@ -300,7 +300,7 @@ const VerifiedFarmerForm = () => {
           })}
         </div>
 
-        {/* Submit Button */}
+        
         <div className="mt-8 text-center">
           <button
             disabled={!canSubmit}
