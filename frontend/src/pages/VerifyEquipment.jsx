@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Leaf, Shield, CheckCircle, AlertCircle } from 'lucide-react';
+import api from "../lib/axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const VerifiedFarmerForm = () => {
+  const { equipmentId } = useParams(); // or pass as prop if preferred
+  const navigate = useNavigate();
   const [openQuestion, setOpenQuestion] = useState(null);
   const [answers, setAnswers] = useState({});
 
@@ -59,6 +64,32 @@ const VerifiedFarmerForm = () => {
       required: true
     }
   ];
+
+  const handleSubmit = async () => {
+    
+    if (!canSubmit) return;
+
+
+    const safety = answers[2]?.main === "Yes";
+    const age = Number(answers[1]?.age || 0);
+    const condition = answers[1]?.condition;
+    const envCompliance = answers[2]?.main === "Yes";
+    const warrantyService = answers[3]?.main !== "No";
+
+    if (safety && age < 10 && condition !== "Poor" && envCompliance && warrantyService) {
+      try {
+
+        await api.put(`/equipments/${equipmentId}`, { verified: true });
+        toast.success("Equipment verified successfully!");
+        navigate("/equipment"); 
+      } catch (error) {
+        toast.error("Failed to update verification status.");
+        console.error(error);
+      }
+    } else {
+      toast.error("Equipment does not meet verification criteria.");
+    }
+  };
 
   const toggleQuestion = (questionId) => {
     setOpenQuestion(openQuestion === questionId ? null : questionId);
@@ -303,17 +334,17 @@ const VerifiedFarmerForm = () => {
         {/* Submit Button */}
         <div className="mt-8 text-center">
           <button
+            onClick={handleSubmit}
             disabled={!canSubmit}
-            className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 ${
-              canSubmit
-                ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }`}
+            className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 ${canSubmit
+              ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl'
+              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
           >
             {canSubmit ? 'Submit for Verification' : 'Complete All Questions to Continue'}
           </button>
 
-          
+
         </div>
       </div>
     </div>

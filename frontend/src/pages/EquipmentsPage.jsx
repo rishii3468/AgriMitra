@@ -95,11 +95,12 @@ export default function EquipmentPage() {
                       Verified
                     </span>
                   ) : (
-                    <Link to={"/verified-farmer"}>
+                    <Link to="/verified-farmer" state={{ equipmentId: eq._id }}>
                       <button className="text-xs px-2 py-1 bg-red-100 text-red-600 border border-red-300 rounded-md hover:bg-red-200 transition">
                         Verify Now
                       </button>
                     </Link>
+
                   )}
                 </div>
 
