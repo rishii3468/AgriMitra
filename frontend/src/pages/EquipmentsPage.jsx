@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router";
 
 const equipments = [
   {
@@ -57,10 +58,12 @@ export default function EquipmentPage() {
     <div className="bg-green-50 min-h-screen">
       {/* Top bar */}
       <nav className="flex justify-between items-center px-4 sm:px-6 py-4 bg-green-100 border-b border-green-200 shadow-sm">
-        <button className="flex items-center gap-2 text-green-700 hover:opacity-80">
-          <span className="text-2xl">🌱</span>
-          <span className="text-2xl font-extrabold">AgriMitra</span>
-        </button>
+        <Link to={'/'}>
+          <button className="flex items-center gap-2 text-green-700 hover:opacity-80">
+            <span className="text-2xl">🌱</span>
+            <span className="text-2xl font-extrabold">AgriMitra</span>
+          </button>
+        </Link>
 
         <div className="flex gap-2 sm:gap-3">
           <button className="px-2 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-lg sm:rounded-xl bg-green-600 text-white shadow hover:-translate-y-0.5 hover:shadow-md hover:bg-green-700 active:translate-y-0 transition">
@@ -111,9 +114,11 @@ export default function EquipmentPage() {
               <div className="flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h3 className="font-semibold text-lg text-green-800">{eq.name}</h3>
-                  <button className="text-xs px-2 py-1 bg-red-100 text-red-600 border border-red-300 rounded-md hover:bg-red-200 transition">
-                    Verify Now
-                  </button>
+                  <Link to={'/verified-farmer'}>
+                    <button className="text-xs px-2 py-1 bg-red-100 text-red-600 border border-red-300 rounded-md hover:bg-red-200 transition">
+                      Verify Now
+                    </button>
+                  </Link>
                 </div>
                 <p className="text-sm text-gray-600 mt-1">{eq.details}</p>
                 <p className="text-sm mt-1 text-gray-700">
