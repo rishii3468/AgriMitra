@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Calendar, MapPin, User, Wrench, DollarSign } from 'lucide-react';
+import api from '../lib/axios'; // make sure this points to your axios setup
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const ListEquipment = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     ownerName: '',
@@ -12,6 +16,10 @@ const ListEquipment = () => {
     rentPricePerDay: ''
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -20,10 +28,44 @@ const ListEquipment = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log('Equipment listing submitted:', formData);
-    // Here you would typically send the data to your backend
-    alert('Equipment listed successfully!');
+  const validateForm = () => {
+    if (!formData.name || !formData.ownerName || !formData.city || !formData.state || !formData.description || !formData.buyPrice || !formData.rentPricePerDay) {
+      setError("Please fill in all required fields.");
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    const payload = {
+      name: formData.name,
+      ownerName: formData.ownerName,
+      location: {
+        city: formData.city,
+        state: formData.state,
+      },
+      description: formData.description,
+      buyPrice: Number(formData.buyPrice),
+      rentPricePerDay: Number(formData.rentPricePerDay),
+      verified: false,
+    };
+
+    try {
+      setLoading(true);
+      await api.post('/equipments/create', payload);
+      setSuccess("Equipment listed successfully!");
+      toast.success("Equipment listed successfully!");
+      navigate('/equipment');
+    } catch (err) {
+      console.error(err);
+      setError("Failed to list equipment. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -40,7 +82,7 @@ const ListEquipment = () => {
           </div>
 
           {/* Form */}
-          <div className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Equipment Name and Owner Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -159,18 +201,22 @@ const ListEquipment = () => {
               </div>
             </div>
 
+            {error && <p className="text-red-600 text-center">{error}</p>}
+            {success && <p className="text-green-600 text-center">{success}</p>}
+
             {/* Submit Button */}
             <div className="flex justify-center pt-6">
               <button
+                type="submit"
                 onClick={handleSubmit}
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-12 rounded-xl transition-colors duration-200 transform hover:scale-105 shadow-lg"
+                disabled={loading}
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-12 rounded-xl transition-colors duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                List Equipment
+                {loading ? "Listing..." : "List Equipment"}
               </button>
             </div>
-          </div>
-
-          </div>
+          </form>
+        </div>
       </div>
     </div>
   );

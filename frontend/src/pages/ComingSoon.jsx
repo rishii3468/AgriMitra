@@ -9,10 +9,10 @@ export default function ComingSoon() {
         We are working hard to bring you something amazing!
       </p>
       <Link
-        to="/marketplace"
+        to="/"
         className="text-green-600 border border-green-700 px-6 py-2 rounded-lg hover:bg-green-700 hover:text-white transition"
       >
-        Market Place
+        Home
       </Link>
     </div>
   );
