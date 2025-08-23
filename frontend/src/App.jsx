@@ -7,6 +7,8 @@ import SignUp from './pages/RegistrationPage'
 import Login from './pages/LoginPage'
 import ListCropForm from './pages/ListItemPage'
 import ComingSoon from './pages/ComingSoon'
+import AboutPage from './pages/AboutUs'
+import KnowledgePage from './pages/KnowledgePage'
 
 const App = () => {
   return (
@@ -18,8 +20,10 @@ const App = () => {
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/about-us" element={<AboutPage />} />
           <Route path="/list-crop" element={<ListCropForm />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
+          <Route path="/knowledge" element={<KnowledgePage />} />
           <Route path="*" element={<div className="text-center text-red-500">Page Not Found</div>} />
         </Routes>
       </div>

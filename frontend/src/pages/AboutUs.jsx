@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function AboutPage() {
   const teamMembers = [
     { name: "Rishi I"  },
@@ -20,25 +22,19 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between h-auto sm:h-16 py-2 sm:py-0">
             <div className="flex items-center mb-2 sm:mb-0">
-              <button className="mr-4 p-2 rounded-md hover:bg-gray-100">
-                <span className="text-gray-600">←</span>
-              </button>
-              <div className="flex items-center">
-                <div className="w-8 h-8 rounded-md flex items-center justify-center mr-3">
-                  <span className="text-white text-sm font-bold">🌱</span>
+              <Link to={'/'}>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 rounded-md flex items-center justify-center mr-3">
+                    <span className="text-white text-sm font-bold">🌱</span>
+                  </div>
+                  <span className="text-lg sm:text-xl font-semibold text-gray-900">
+                    AgriMitra
+                  </span>
                 </div>
-                <span className="text-lg sm:text-xl font-semibold text-gray-900">
-                  AgriMitra
-                </span>
-              </div>
+              </Link>
             </div>
             <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3">
-              <button className="px-3 sm:px-4 py-2 border border-gray-300 rounded-md text-xs sm:text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                Home
-              </button>
-              <button className="px-3 sm:px-4 py-2 bg-green-600 text-white rounded-md text-xs sm:text-sm font-medium hover:bg-green-700">
-                Marketplace
-              </button>
+
             </div>
           </div>
         </div>

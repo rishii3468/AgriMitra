@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Search } from "lucide-react";
+import { Link } from "react-router";
 
 const knowledgeData = [
   {
     id: 1,
     title: "Farmer Mental Health Support",
     description:
-      "24/7 helpline and counseling services for farmers facing stress, depression, or suicidal thoughts. Professional mental health support and crisis intervention available.",
+      "24/7 helpline and counseling services for farmers facing stress, depression, or suicidal thoughts. Professional mental health support.",
     category: "Mental Health",
     link: "https://dackkms.gov.in/account/login.aspx"
   },
@@ -118,10 +119,12 @@ export default function KnowledgePage() {
       <header className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <span className="text-3xl">🌱</span>
-              <h1 className="text-2xl font-bold text-green-700">AgriMitra</h1>
-            </div>
+            <Link to={'/'}>
+              <div className="flex items-center space-x-3">
+                <span className="text-3xl">🌱</span>
+                <h1 className="text-2xl font-bold text-green-700">AgriMitra</h1>
+              </div>
+            </Link>
           </div>
         </div>
       </header>
