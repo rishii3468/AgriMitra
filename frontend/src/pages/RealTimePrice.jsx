@@ -32,14 +32,12 @@ export default function CommodityPricesPage() {
     if (selectedCrop && selectedMarket) {
       const filtered = marketData.filter(
         (item) =>
-          item.commodity_name.toLowerCase() === selectedCrop.toLowerCase() &&
-          item.market.toLowerCase() === selectedMarket.toLowerCase()
+          item.commodity_name?.toLowerCase() === selectedCrop.toLowerCase() &&
+          item.market?.toLowerCase() === selectedMarket.toLowerCase()
       );
-      if (filtered.length > 0) {
-        setTodayPrice(filtered[0].modal_price);
-      } else {
-        setTodayPrice("Data not available");
-      }
+      setTodayPrice(filtered.length > 0 ? filtered[0].modal_price : "Data not available");
+    } else {
+      setTodayPrice(null);
     }
   };
 
@@ -48,9 +46,9 @@ export default function CommodityPricesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Navbar */}
-      <nav className="bg-green-100 p-4 shadow-md flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+      <nav className="bg-green-100 p-4 shadow-md flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
         <h1 className="text-2xl font-bold text-green-800">Real Time Market Price</h1>
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
           <button className="w-full sm:w-auto px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
@@ -62,13 +60,13 @@ export default function CommodityPricesPage() {
         </div>
       </nav>
 
-      <div className="p-6 max-w-4xl mx-auto space-y-8">
+      <div className="p-6 max-w-7xl mx-auto flex-1 flex flex-col gap-8">
         {/* Search Bar */}
         <div className="flex flex-col sm:flex-row gap-4">
           <select
             value={selectedCrop}
             onChange={(e) => setSelectedCrop(e.target.value)}
-            className="p-2 border rounded w-full sm:w-1/3 hover:border-green-500 transition"
+            className="p-2 border rounded w-full hover:border-green-500 transition"
           >
             <option value="">Select Crop</option>
             {crops.map((crop) => (
@@ -79,7 +77,7 @@ export default function CommodityPricesPage() {
           <select
             value={selectedMarket}
             onChange={(e) => setSelectedMarket(e.target.value)}
-            className="p-2 border rounded w-full sm:w-1/3 hover:border-green-500 transition"
+            className="p-2 border rounded w-full hover:border-green-500 transition"
           >
             <option value="">Select Market</option>
             {markets.map((market) => (
@@ -101,31 +99,31 @@ export default function CommodityPricesPage() {
         ) : (
           todayPrice && (
             <div className="bg-green-100 p-4 rounded text-center text-lg font-semibold hover:shadow-lg transition">
-              Today’s Price for {selectedCrop} in {selectedMarket}: ₹{todayPrice}/quintal
+              Today's Price for {selectedCrop} in {selectedMarket}: ₹{todayPrice}/quintal
             </div>
           )
         )}
 
         {/* Compare Prices */}
-        <div className="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-bold mb-4">Compare Prices Across Markets</h2>
+        <div className="bg-white p-4 rounded shadow hover:shadow-lg transition flex flex-col gap-4">
+          <h2 className="text-xl font-bold">Compare Prices Across Markets</h2>
           <select
             value={compareMarket}
             onChange={(e) => setCompareMarket(e.target.value)}
-            className="p-2 border rounded hover:border-green-500 transition w-full sm:w-auto"
+            className="p-2 border rounded hover:border-green-500 transition w-full"
           >
             <option value="">Select Market to Compare</option>
             {markets.map((market) => (
               <option key={market} value={market}>{market}</option>
             ))}
           </select>
-          {compareMarket && (
-            <div className="mt-4 text-center font-semibold hover:text-green-700 transition">
-              {compareMarket} Price for {selectedCrop || "Selected Crop"}: ₹{
+          {compareMarket && selectedCrop && (
+            <div className="text-center font-semibold hover:text-green-700 transition">
+              {compareMarket} Price for {selectedCrop}: ₹{
                 marketData.find(
                   (item) =>
-                    item.commodity_name.toLowerCase() === selectedCrop.toLowerCase() &&
-                    item.market.toLowerCase() === compareMarket.toLowerCase()
+                    item.commodity_name?.toLowerCase() === selectedCrop.toLowerCase() &&
+                    item.market?.toLowerCase() === compareMarket.toLowerCase()
                 )?.modal_price || "Data not available"
               }/quintal
             </div>
@@ -133,7 +131,7 @@ export default function CommodityPricesPage() {
         </div>
 
         {/* Graph Link */}
-        <div className="text-center mt-6">
+        <div className="text-center">
           <button
             onClick={openGraph}
             className="w-full sm:w-auto px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
