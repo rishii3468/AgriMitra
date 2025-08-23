@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Leaf, Phone, Mail, Calendar, Package, DollarSign, User, MapPin } from "lucide-react";
+import { Link, useNavigate } from "react-router";
+import api from "../lib/axios";
+import { toast } from "react-hot-toast";
 
 const ListCropForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     cropName: "",
     farmerName: "",
@@ -36,23 +40,40 @@ const ListCropForm = () => {
     return newErrors;
   };
 
+  const createCrop = async (cropData) => {
+    try {   
+      const response = await api.post("/crops/create", cropData);
+      console.log("Crop created:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error creating crop:", error);
+      throw error;
+    }
+  };
+      
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
       console.log("Submitted Data:", formData);
-      alert("Crop listed successfully!");
-      setFormData({
-        cropName: "",
-        farmerName: "",
-        city: "",
-        state: "",
-        harvestedDate: "",
-        quantity: "",
-        pricePerKg: "",
-        contactPhone: "",
-        contactEmail: "",
+      createCrop({
+        cropName: formData.cropName,
+        farmerName: formData.farmerName,
+        location: { 
+          city: formData.city,
+          state: formData.state 
+        },
+        harvestedDate: formData.harvestedDate,
+        quantityKg: Number(formData.quantity),
+        pricePerKg: Number(formData.pricePerKg),
+        contactInfo: {
+          phone: formData.contactPhone,
+          email: formData.contactEmail
+        }
       });
+      toast.success("Crop listed successfully!");
+      navigate("/marketplace");
     } else {
       setErrors(newErrors);
     }
@@ -62,6 +83,9 @@ const ListCropForm = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-50 to-green-100 p-4">
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12">
         {/* Header */}
+        <Link to="/marketplace" >
+          <p className="text-left w-3xl hover:text-green-700 cursor-pointer">Back</p>
+        </Link>
         <div className="flex flex-col items-center text-center mb-6 md:mb-10">
           <Leaf className="h-12 w-12 text-green-600 mb-2" />
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-800">
@@ -70,6 +94,7 @@ const ListCropForm = () => {
           <p className="text-gray-600 mt-2 text-sm sm:text-base">
             Connect with buyers by listing your fresh produce
           </p>
+          
         </div>
 
         {/* Form */}
@@ -231,7 +256,7 @@ const ListCropForm = () => {
             )}
           </div>
         </form>
-
+              
         {/* Submit Button */}
         <div className="mt-6 sm:mt-8 flex justify-center">
           <button

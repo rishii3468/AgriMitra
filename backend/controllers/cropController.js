@@ -1,8 +1,8 @@
-import Crop from "../models/Crops";
+import Crop from "../models/Crops.js";
 
 export const getAllCrops = async (req, res) => {
   try {
-    const crops = await Crop.find({});
+    const crops = await Crop.find();
     res.status(200).json(crops);
   } catch (error) {
     res.status(500).json({ message: "Server error fetching crops", error: error.message });
@@ -21,7 +21,7 @@ export const createCrop = async (req, res) => {
       contactInfo,
     } = req.body;
 
-    if (!cropName || !farmerName || !location || !location.city || !location.state || !harvestedDate || !quantityKg || !pricePerKg || !contactInfo) {
+    if (!cropName || !farmerName || !location || !location.city || !location.state || !harvestedDate || !quantityKg || !pricePerKg || !contactInfo || !contactInfo.phone || !contactInfo.email) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
