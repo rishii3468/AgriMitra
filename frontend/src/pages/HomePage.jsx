@@ -23,7 +23,10 @@ const AgriConnect = () => {
               <Link to={'/marketplace'} className="text-gray-700 hover:text-green-600 transition-colors">
                 Marketplace
               </Link>
-              <a href="#" className="text-gray-700 hover:text-green-600 transition-colors">Equipment</a>
+
+              <Link to={'/equipment'} className="text-gray-700 hover:text-green-600 transition-colors">
+                Equipment
+              </Link>
               <a href="#" className="text-gray-700 hover:text-green-600 transition-colors">Community</a>
               <Link to={'/knowledge'} className="text-gray-700 hover:text-green-600 transition-colors">
                 Knowledge
@@ -72,13 +75,20 @@ const AgriConnect = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t shadow-lg">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link to={'/marketplace'} className="text-gray-700 hover:text-green-600 transition-colors">
-                Marketplace
+              <Link to={'/marketplace'} >
+                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">MarketPlace</p>
               </Link>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Equipment</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Community</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</a>
+              <Link to={'/equipment'} className="text-gray-700 hover:text-green-600 transition-colors">
+                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Equipment</p>
+              </Link>
+
+              <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Community</p>
+              <Link to={'/knowledge'} >
+                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</p>
+              </Link>
+              <Link to={'/about-us'} >
+                <p className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">About Us</p>
+              </Link>
               <div className="pt-4 border-t border-gray-200 mt-4">
                 <select className="w-full border border-gray-300 rounded px-3 py-2 text-gray-700 mb-2 focus:outline-none focus:ring-2 focus:ring-green-500">
                   <option>English</option>
