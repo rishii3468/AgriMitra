@@ -109,8 +109,13 @@ export default function EquipmentPage() {
 
               {/* Details */}
               <div className="flex-1">
-                <h3 className="font-semibold text-lg text-green-800">{eq.name}</h3>
-                <p className="text-sm text-gray-600">{eq.details}</p>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h3 className="font-semibold text-lg text-green-800">{eq.name}</h3>
+                  <button className="text-xs px-2 py-1 bg-red-100 text-red-600 border border-red-300 rounded-md hover:bg-red-200 transition">
+                    Verify Now
+                  </button>
+                </div>
+                <p className="text-sm text-gray-600 mt-1">{eq.details}</p>
                 <p className="text-sm mt-1 text-gray-700">
                   <span className="font-medium">{eq.farmer}</span> • {eq.location}
                 </p>
