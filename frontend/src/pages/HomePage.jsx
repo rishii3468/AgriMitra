@@ -295,9 +295,7 @@ const AgriConnect = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Knowledge Hub</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Knowledge Hub</a></li>               
               </ul>
             </div>
 
