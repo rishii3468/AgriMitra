@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Leaf, Shield, CheckCircle, AlertCircle } from 'lucide-react';
 import api from "../lib/axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 const VerifiedFarmerForm = () => {
-  const { equipmentId } = useParams(); // or pass as prop if preferred
+  const location = useLocation();
+  const equipmentId = location.state?.equipmentId;
   const navigate = useNavigate();
   const [openQuestion, setOpenQuestion] = useState(null);
   const [answers, setAnswers] = useState({});
