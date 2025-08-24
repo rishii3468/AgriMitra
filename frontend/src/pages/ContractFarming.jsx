@@ -211,7 +211,7 @@ const ContractFarmingPlatform = () => {
         
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredContracts.map(contract => (
-            <div key={contract.id} className="bg-white rounded-lg border border-gray-200 p-6">
+            <div key={contract.id} className="bg-white rounded-lg border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
               <div className="mb-4">
                 <h4 className="text-xl font-bold text-gray-800 mb-2">{contract.crop}</h4>
                 <p className="text-sm text-green-600 font-medium">{contract.companyName}</p>

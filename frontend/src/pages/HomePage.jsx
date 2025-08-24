@@ -24,6 +24,7 @@ const AgriConnect = () => {
               <Link to="/equipment" className="text-gray-700 hover:text-green-600 transition-colors">Equipment</Link>
               <Link to="/community-notes" className="text-gray-700 hover:text-green-600 transition-colors">Community</Link>
               <Link to="/knowledge" className="text-gray-700 hover:text-green-600 transition-colors">Knowledge</Link>
+              <Link to="/contract-farming" className="text-gray-700 hover:text-green-600 transition-colors">Contract Farming</Link>
               <Link to="/contact-us" className="text-gray-700 hover:text-green-600 transition-colors">Contact Us</Link>
               <Link to="/about-us" className="text-gray-700 hover:text-green-600 transition-colors">About Us</Link>
             </nav>
