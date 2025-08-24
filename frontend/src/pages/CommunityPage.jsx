@@ -60,7 +60,6 @@ export default function CommunityNotesPage() {
       try {
         const noteData = {
           ...newNote,
-          location: "Your Location", // You can add location input
         };
 
         const response = await api.post("/notes", noteData);
@@ -342,12 +341,7 @@ export default function CommunityNotesPage() {
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm text-gray-600">
                     <div className="flex items-center gap-2">
                       <span className="font-medium text-green-700">{note.author}</span>
-                      {note.location && (
-                        <>
-                          <span>•</span>
-                          <span>{note.location}</span>
-                        </>
-                      )}
+          
                     </div>
                     <div className="text-xs text-gray-500">
                       {note.updatedAt !== note.createdAt ? (
