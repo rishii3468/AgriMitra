@@ -10,7 +10,7 @@ const AgriConnect = () => {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            
+
             {/* Logo */}
             <div className="flex items-center">
               <div className="text-green-600 text-xl font-bold flex items-center">
@@ -24,15 +24,13 @@ const AgriConnect = () => {
               <Link to="/equipment" className="text-gray-700 hover:text-green-600 transition-colors">Equipment</Link>
               <Link to="/community-notes" className="text-gray-700 hover:text-green-600 transition-colors">Community</Link>
               <Link to="/knowledge" className="text-gray-700 hover:text-green-600 transition-colors">Knowledge</Link>
+              <Link to="/contact-us" className="text-gray-700 hover:text-green-600 transition-colors">Contact Us</Link>
               <Link to="/about-us" className="text-gray-700 hover:text-green-600 transition-colors">About Us</Link>
             </nav>
 
             {/* Right Side */}
             <div className="flex items-center space-x-4">
-              <select className="border-none bg-transparent text-gray-700 hidden sm:block focus:outline-none">
-                <option>English</option>
-                <option>Hindi</option>
-              </select>
+
               <Link to="/login">
                 <button className="text-gray-700 hover:text-green-600 hidden sm:block transition-colors">Login</button>
               </Link>
@@ -43,7 +41,7 @@ const AgriConnect = () => {
               </Link>
 
               {/* Hamburger */}
-              <button 
+              <button
                 className="md:hidden text-gray-700 p-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
@@ -69,12 +67,10 @@ const AgriConnect = () => {
               <Link to="/equipment" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Equipment</Link>
               <Link to="/community-notes" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Community</Link>
               <Link to="/knowledge" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Knowledge</Link>
+              <Link to="/contact-us" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">Contact Us</Link>
               <Link to="/about-us" className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors">About Us</Link>
               <div className="pt-4 border-t border-gray-200 mt-4">
-                <select className="w-full border border-gray-300 rounded px-3 py-2 text-gray-700 mb-2 focus:outline-none focus:ring-2 focus:ring-green-500">
-                  <option>English</option>
-                  <option>Hindi</option>
-                </select>
+
                 <Link to="/login">
                   <button className="w-full text-left px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md transition-colors mb-2">Login</button>
                 </Link>
@@ -83,13 +79,13 @@ const AgriConnect = () => {
                 </Link>
               </div>
             </div>
-          </div> 
+          </div>
         )}
       </header>
 
       {/* HERO SECTION */}
       <div className="relative min-h-[500px] md:min-h-[600px] lg:min-h-screen overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-gradient-to-r from-green-900 via-green-700 to-green-600"
           style={{
             backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2048&q=80')",
@@ -99,7 +95,7 @@ const AgriConnect = () => {
             backgroundAttachment: "fixed"
           }}
         ></div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center min-h-[500px] md:min-h-[600px] lg:min-h-screen">
           <div className="text-white max-w-2xl">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
@@ -134,39 +130,69 @@ const AgriConnect = () => {
               Simple, transparent and farmer-friendly platform designed for the modern agriculture ecosystem.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {/* Sell Produce */}
-            <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Sell Produce</h3>
-              <p className="text-gray-600 text-sm">
-                List your crops directly to buyers at fair market prices.
-              </p>
-            </div>
 
-            {/* Buy Produce */}
-            <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6.28" />
-                </svg>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            <Link to="/marketplace">
+              <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    className="w-6 h-6 md:w-8 md:h-8 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Sell Produce</h3>
+                <p className="text-gray-600 text-sm">
+                  List your crops directly to buyers at fair market prices.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Buy Produce</h3>
-              <p className="text-gray-600 text-sm">
-                Source fresh crops directly from farmers nationwide.
-              </p>
-            </div>
-
-            {/* Rent Equipment */}
+            </Link>
+            <Link to="/commodity-prices">
+              <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    className="w-6 h-6 md:w-8 md:h-8 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M11 11V7a4 4 0 00-8 0v4m16 0v-4a4 4 0 00-8 0v4m5 9H7a2 2 0 01-2-2v-5a5 5 0 0110 0v5a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Real Time Analysis</h3>
+                <p className="text-gray-600 text-sm">
+                  Get up-to-date market insights and crop analytics.
+                </p>
+              </div>
+            </Link>
+            <Link to="/equipment">
             <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                <svg
+                  className="w-6 h-6 md:w-8 md:h-8 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2M7 7h10l1 4H6l1-4z"
+                  />
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Rent Equipment</h3>
@@ -174,55 +200,43 @@ const AgriConnect = () => {
                 Access modern farming equipment when you need it.
               </p>
             </div>
-
-            {/* Community Help */}
-            <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
+            </Link>
+            
+            <Link to="/contract-farming">
+              <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    className="w-6 h-6 md:w-8 md:h-8 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6l4 2M5 13a7 7 0 0114 0v5a2 2 0 01-2 2H7a2 2 0 01-2-2v-5z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Contract Farming
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Partner with farmers for efficient crop production.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Community Help</h3>
-              <p className="text-gray-600 text-sm">
-                Connect with fellow farmers and share knowledge.
-              </p>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* WHY CHOOSE AGRIMITRA SECTION */}
-      <div className="py-12 md:py-16 lg:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose AgriMitra</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
-              Empowering farmers with modern tools and fair market access.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {/* Add your "Why Choose" content here */}
-            <div className="text-center">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Fair Pricing</h3>
-              <p className="text-gray-600">Direct connection between farmers and buyers ensures fair market prices.</p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Modern Tools</h3>
-              <p className="text-gray-600">Access to latest farming equipment and technology solutions.</p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Community Support</h3>
-              <p className="text-gray-600">Join a network of farmers sharing knowledge and resources.</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* FOOTER */}
       <footer className="bg-gray-800 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            
+
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="text-xl font-bold mb-4 flex items-center">
                 <span className="mr-2">🌱</span> AgriMitra
@@ -244,7 +258,7 @@ const AgriConnect = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
-                <li><Link to="/knowledge" className="hover:text-white transition-colors">Knowledge Hub</Link></li>               
+                <li><Link to="/knowledge" className="hover:text-white transition-colors">Knowledge Hub</Link></li>
               </ul>
             </div>
 
@@ -252,11 +266,11 @@ const AgriConnect = () => {
               <h4 className="text-lg font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-300 text-sm">
                 <li><Link to="/about-us" className="hover:text-white transition-colors">About</Link></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li><Link to="/contact-us"><p className="hover:text-white transition-colors">Contact Us</p></Link></li>
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
             © 2025 AgriMitra. Built for farmers
           </div>

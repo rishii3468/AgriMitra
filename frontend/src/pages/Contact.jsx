@@ -1,51 +1,33 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ContactUs = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const Link = ({ to, children, className, ...props }) => (
-    <a href="#" className={className} onClick={(e) => e.preventDefault()} {...props}>
-      {children}
-    </a>
-  );
+
 
   return (
     <div className="min-h-screen bg-white">
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Link to="/" className="text-green-600 text-xl font-bold flex items-center">
+            <Link to="/" className="flex items-center">
+              <div className="text-xl font-bold text-green-600 flex items-center">
                 <span className="mr-2">🌱</span>
                 AgriMitra
-              </Link>
-            </div>
-            
+              </div>
+            </Link>
+
+
+
             <nav className="hidden md:flex space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-green-600 transition-colors">
-                Home
-              </Link>
-              <Link to="/marketplace" className="text-gray-700 hover:text-green-600 transition-colors">
-                Marketplace
-              </Link>
-              <Link to="/equipment" className="text-gray-700 hover:text-green-600 transition-colors">
-                Equipment
-              </Link>
-              <Link to="/community" className="text-gray-700 hover:text-green-600 transition-colors">
-                Community
-              </Link>
-              <Link to="/knowledge" className="text-gray-700 hover:text-green-600 transition-colors">
-                Knowledge
-              </Link>
-              <Link to="/about-us" className="text-gray-700 hover:text-green-600 transition-colors">
-                About Us
-              </Link>
+
               <Link to="/contact" className="text-green-600 font-semibold">
                 Contact
               </Link>
             </nav>
-            
-            <button 
+
+            <button
               className="md:hidden text-gray-700 p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -61,7 +43,7 @@ const ContactUs = () => {
             </button>
           </div>
         </div>
-        
+
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t shadow-lg">
             <div className="px-2 pt-2 pb-3 space-y-1">
@@ -105,10 +87,10 @@ const ContactUs = () => {
       <div className="py-16 md:py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
+
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
-              
+
               <div className="space-y-8">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
@@ -184,7 +166,7 @@ const ContactUs = () => {
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Common Questions</h2>
           </div>
-          
+
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I start using AgriMitra?</h3>
@@ -192,7 +174,7 @@ const ContactUs = () => {
                 Just sign up and start exploring! It's completely free to join and list your produce.
               </p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Is AgriMitra really free?</h3>
               <p className="text-gray-600">
@@ -234,7 +216,7 @@ const ContactUs = () => {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
             © 2025 AgriMitra. Built for farmers.
           </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
+import api from "../lib/axios";
 
 export default function CommunityNotesPage() {
   const [notes, setNotes] = useState([]);
@@ -7,59 +8,42 @@ export default function CommunityNotesPage() {
   const [editingNote, setEditingNote] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [newNote, setNewNote] = useState({
     title: "",
     content: "",
     author: ""
   });
 
-  // Mock data for demonstration (replace with actual API calls)
-  const mockNotes = [
-    {
-      id: 1,
-      title: "Best Practices for Organic Farming",
-      content: "Sharing my experience with organic farming techniques that have worked well for me over the past 5 years. Key points include proper composting, crop rotation, and natural pest control methods.",
-      author: "Rajesh Kumar",
-      location: "Nashik, Maharashtra",
-      createdAt: "2024-01-20T10:30:00Z",
-      updatedAt: "2024-01-20T10:30:00Z"
-    },
-    {
-      id: 2,
-      title: "Water Conservation Tips for Small Farmers",
-      content: "Here are some practical water conservation methods I've implemented on my 2-acre farm: drip irrigation, rainwater harvesting, and mulching. These techniques have reduced my water usage by 40%.",
-      author: "Priya Sharma",
-      location: "Karnal, Haryana",
-      createdAt: "2024-01-19T14:15:00Z",
-      updatedAt: "2024-01-19T14:15:00Z"
-    },
-    {
-      id: 3,
-      title: "Market Price Trends - January 2024",
-      content: "Observed significant price fluctuations in onions and tomatoes this month. Onion prices have increased by 25% due to reduced supply. Farmers in Maharashtra should consider increasing onion cultivation for next season.",
-      author: "Suresh Patil",
-      location: "Pune, Maharashtra",
-      createdAt: "2024-01-18T09:45:00Z",
-      updatedAt: "2024-01-18T09:45:00Z"
-    },
-    {
-      id: 4,
-      title: "Success with Green Chili Cultivation",
-      content: "This season's green chili harvest exceeded expectations! Using hybrid seeds and proper spacing techniques resulted in 30% higher yield. Happy to share detailed methodology with fellow farmers.",
-      author: "Lakshmi Devi",
-      location: "Guntur, Andhra Pradesh",
-      createdAt: "2024-01-17T16:20:00Z",
-      updatedAt: "2024-01-17T16:20:00Z"
-    }
-  ];
-
+  // Fetch notes from API
   useEffect(() => {
-    // Simulate API call
-    setLoading(true);
-    setTimeout(() => {
-      setNotes(mockNotes);
-      setLoading(false);
-    }, 1000);
+    const fetchNotes = async () => {
+      setLoading(true);
+      setError("");
+      
+      try {
+        const response = await api.get("/notes");
+        console.log("API Response:", response.data);
+        
+        // Handle the response data properly
+        if (response.data && Array.isArray(response.data)) {
+          setNotes(response.data);
+        } else if (response.data && response.data.notes) {
+          // If your API returns { notes: [...] }
+          setNotes(response.data.notes);
+        } else {
+          setNotes([]);
+        }
+      } catch (error) {
+      
+        setError("Failed to load notes. Please try again.");
+        setNotes([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNotes();
   }, []);
 
   const formatDate = (dateString) => {
@@ -67,18 +51,39 @@ export default function CommunityNotesPage() {
     return date.toLocaleDateString() + " at " + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
   };
 
-  const handleCreateNote = () => {
+  // Create note with API call
+  const handleCreateNote = async () => {
     if (newNote.title.trim() && newNote.content.trim() && newNote.author.trim()) {
-      const note = {
-        id: Date.now(),
-        ...newNote,
-        location: "Your Location", // You can add location input
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
-      setNotes([note, ...notes]);
-      setNewNote({ title: "", content: "", author: "" });
-      setShowCreateForm(false);
+      setLoading(true);
+      setError("");
+
+      try {
+        const noteData = {
+          ...newNote,
+          location: "Your Location", // You can add location input
+        };
+
+        const response = await api.post("/notes", noteData);
+      
+
+        // Add the new note to the state
+
+        const createdNote = {
+          id: response.data._id || Date.now(),
+          ...noteData,
+          createdAt: response.data.createdAt || new Date().toISOString(),
+          updatedAt: response.data.updatedAt || new Date().toISOString()
+        };
+
+        setNotes([createdNote, ...notes]);
+        setNewNote({ title: "", content: "", author: "" });
+        setShowCreateForm(false);
+      } catch (error) {
+        console.error("Failed to create note:", error);
+        setError("Failed to create note. Please try again.");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -86,21 +91,59 @@ export default function CommunityNotesPage() {
     setEditingNote({ ...note });
   };
 
-  const handleUpdateNote = () => {
+  // Update note with API call
+  const handleUpdateNote = async () => {
     if (editingNote.title.trim() && editingNote.content.trim()) {
-      const updatedNotes = notes.map(note => 
-        note.id === editingNote.id 
-          ? { ...editingNote, updatedAt: new Date().toISOString() }
-          : note
-      );
-      setNotes(updatedNotes);
-      setEditingNote(null);
+      setLoading(true);
+      setError("");
+
+      try {
+        const updateData = {
+          title: editingNote.title,
+          content: editingNote.content,
+          author: editingNote.author
+        };
+
+        const response = await api.put(`/notes/${editingNote.id}`, updateData);
+        console.log("Note updated:", response.data);
+
+        const updatedNotes = notes.map(note => 
+          note.id === editingNote.id 
+            ? { 
+                ...editingNote, 
+                updatedAt: response.data.updatedAt || new Date().toISOString() 
+              }
+            : note
+        );
+        
+        setNotes(updatedNotes);
+        setEditingNote(null);
+      } catch (error) {
+        console.error("Failed to update note:", error);
+        setError("Failed to update note. Please try again.");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
-  const handleDeleteNote = (id) => {
+  // Delete note with API call
+  const handleDeleteNote = async (id) => {
     if (window.confirm("Are you sure you want to delete this note?")) {
-      setNotes(notes.filter(note => note.id !== id));
+      setLoading(true);
+      setError("");
+
+      try {
+        await api.delete(`/notes/${id}`);
+        console.log("Note deleted:", id);
+        
+        setNotes(notes.filter(note => note.id !== id));
+      } catch (error) {
+        console.error("Failed to delete note:", error);
+        setError("Failed to delete note. Please try again.");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -125,10 +168,10 @@ export default function CommunityNotesPage() {
           <button 
             onClick={() => setShowCreateForm(true)}
             className="px-2 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-lg sm:rounded-xl bg-green-600 text-white shadow hover:-translate-y-0.5 hover:shadow-md hover:bg-green-700 active:translate-y-0 transition"
+            disabled={loading}
           >
-            Write Note
+            {loading ? "Loading..." : "Write Note"}
           </button>
-         
         </div>
       </nav>
 
@@ -138,6 +181,13 @@ export default function CommunityNotesPage() {
         <p className="text-gray-600 mt-1">
           Share knowledge, experiences, and connect with fellow farmers
         </p>
+
+        {/* Error Message */}
+        {error && (
+          <div className="mt-4 p-3 bg-red-100 border border-red-300 text-red-700 rounded-xl">
+            {error}
+          </div>
+        )}
 
         {/* Search Bar */}
         <div className="mt-5">
@@ -164,6 +214,7 @@ export default function CommunityNotesPage() {
                 value={newNote.author}
                 onChange={(e) => setNewNote({...newNote, author: e.target.value})}
                 className="w-full border border-gray-300 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-green-400 outline-none"
+                disabled={loading}
               />
               
               <input
@@ -172,6 +223,7 @@ export default function CommunityNotesPage() {
                 value={newNote.title}
                 onChange={(e) => setNewNote({...newNote, title: e.target.value})}
                 className="w-full border border-gray-300 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-green-400 outline-none"
+                disabled={loading}
               />
               
               <textarea
@@ -180,6 +232,7 @@ export default function CommunityNotesPage() {
                 onChange={(e) => setNewNote({...newNote, content: e.target.value})}
                 rows="6"
                 className="w-full border border-gray-300 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-green-400 outline-none resize-none"
+                disabled={loading}
               />
             </div>
 
@@ -187,14 +240,16 @@ export default function CommunityNotesPage() {
               <button
                 onClick={() => setShowCreateForm(false)}
                 className="flex-1 border border-gray-300 text-gray-700 px-4 py-2 rounded-xl hover:bg-gray-50 transition"
+                disabled={loading}
               >
                 Cancel
               </button>
               <button
                 onClick={handleCreateNote}
-                className="flex-1 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition shadow"
+                className="flex-1 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition shadow disabled:opacity-50"
+                disabled={loading || !newNote.title.trim() || !newNote.content.trim() || !newNote.author.trim()}
               >
-                Post Note
+                {loading ? "Posting..." : "Post Note"}
               </button>
             </div>
           </div>
@@ -213,6 +268,7 @@ export default function CommunityNotesPage() {
                 value={editingNote.title}
                 onChange={(e) => setEditingNote({...editingNote, title: e.target.value})}
                 className="w-full border border-gray-300 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-green-400 outline-none"
+                disabled={loading}
               />
               
               <textarea
@@ -220,6 +276,7 @@ export default function CommunityNotesPage() {
                 onChange={(e) => setEditingNote({...editingNote, content: e.target.value})}
                 rows="6"
                 className="w-full border border-gray-300 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-green-400 outline-none resize-none"
+                disabled={loading}
               />
             </div>
 
@@ -227,14 +284,16 @@ export default function CommunityNotesPage() {
               <button
                 onClick={() => setEditingNote(null)}
                 className="flex-1 border border-gray-300 text-gray-700 px-4 py-2 rounded-xl hover:bg-gray-50 transition"
+                disabled={loading}
               >
                 Cancel
               </button>
               <button
                 onClick={handleUpdateNote}
-                className="flex-1 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition shadow"
+                className="flex-1 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition shadow disabled:opacity-50"
+                disabled={loading || !editingNote.title.trim() || !editingNote.content.trim()}
               >
-                Update Note
+                {loading ? "Updating..." : "Update Note"}
               </button>
             </div>
           </div>
@@ -263,13 +322,15 @@ export default function CommunityNotesPage() {
                     <div className="flex gap-2 flex-shrink-0">
                       <button
                         onClick={() => handleEditNote(note)}
-                        className="text-xs px-2 py-1 bg-blue-100 text-blue-600 border border-blue-300 rounded-md hover:bg-blue-200 transition"
+                        className="text-xs px-2 py-1 bg-blue-100 text-blue-600 border border-blue-300 rounded-md hover:bg-blue-200 transition disabled:opacity-50"
+                        disabled={loading}
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDeleteNote(note.id)}
-                        className="text-xs px-2 py-1 bg-red-100 text-red-600 border border-red-300 rounded-md hover:bg-red-200 transition"
+                        className="text-xs px-2 py-1 bg-red-100 text-red-600 border border-red-300 rounded-md hover:bg-red-200 transition disabled:opacity-50"
+                        disabled={loading}
                       >
                         Delete
                       </button>
@@ -310,7 +371,8 @@ export default function CommunityNotesPage() {
             {!searchTerm && (
               <button
                 onClick={() => setShowCreateForm(true)}
-                className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition shadow"
+                className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition shadow disabled:opacity-50"
+                disabled={loading}
               >
                 Write First Note
               </button>

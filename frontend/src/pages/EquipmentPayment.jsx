@@ -27,7 +27,7 @@ export default function EquipmentPaymentPage() {
                 await api.delete(`/equipments/${equipment._id}`);
                 toast.success("Purchase successful!");
             } else if (mode === "rent") {
-                
+                 await api.delete(`/equipments/${equipment._id}`);
                 toast.success("Rental confirmed!");
             }
             setTimeout(() => {

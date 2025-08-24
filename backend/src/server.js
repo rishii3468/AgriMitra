@@ -50,7 +50,6 @@ app.use("/api/equipments",equipmentRoutes)
 
 app.use("/api/users",userRoutes)
 
-console.log("dirname:",__dirname);
 
 
 app.use(serveStatic(path.join(__dirname, '../frontend/dist'), {

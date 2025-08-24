@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { MapPin, Calendar, DollarSign, Phone, Mail } from 'lucide-react';
-
+import { Link, useNavigate } from 'react-router-dom';
 const ContractFarmingPlatform = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [showComingSoon, setShowComingSoon] = useState(false);
+
 
   const handleApplyClick = () => {
-    setShowComingSoon(true);
-  };
-
-  const closeComingSoon = () => {
-    setShowComingSoon(false);
+    navigate('/coming-soon');
   };
 
   const companies = [
@@ -173,11 +170,12 @@ const ContractFarmingPlatform = () => {
       <header className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <span className="text-3xl">🌱</span>
-              <h1 className="text-2xl font-bold text-green-700">AgriMitra</h1>
-            </div>
-
+            <Link to="/">
+              <div className="flex items-center space-x-3">
+                <span className="text-3xl">🌱</span>
+                <h1 className="text-2xl font-bold text-green-700">AgriMitra</h1>
+              </div>
+            </Link>
           </div>
         </div>
       </header>
@@ -275,42 +273,8 @@ const ContractFarmingPlatform = () => {
       </main>
 
       
-      {showComingSoon && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
-            <div className="text-6xl mb-4">🚧</div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Coming Soon!</h3>
-            <p className="text-gray-600 mb-6">
-              Contract application feature is under development. We'll notify you once it's ready!
-            </p>
-            <button 
-              onClick={closeComingSoon}
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
 
-      
-      {showComingSoon && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
-            <div className="text-6xl mb-4">🚧</div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Coming Soon!</h3>
-            <p className="text-gray-600 mb-6">
-              Contract application feature is under development. We'll notify you once it's ready!
-            </p>
-            <button 
-              onClick={closeComingSoon}
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+
 
       
       <footer className="bg-gray-800 text-white py-8 mt-12">

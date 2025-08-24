@@ -79,9 +79,6 @@ export default function MarketPlace() {
             </button>
           </Link>
 
-          <button className="px-2 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-lg sm:rounded-xl bg-green-100 text-green-700 border border-green-400 hover:bg-green-200 transition">
-            My Orders
-          </button>
         </div>
       </nav>
 
