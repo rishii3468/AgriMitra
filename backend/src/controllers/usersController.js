@@ -33,7 +33,10 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+  
+    if(!email || !password){
+        return res.status(400).json({message:"Both fields are required"});
+    }
    
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid email or password" });
@@ -49,11 +52,16 @@ export const loginUser = async (req, res) => {
   
     user.refreshTokens.push(refreshToken);
     await user.save();
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      maxAge: 5 * 24 * 60 * 60 * 1000,
+    });
 
     res.status(200).json({
       message: "Login successful",
       accessToken,
-      refreshToken,
       user: {
         id: user._id,
         username: user.username,
@@ -66,14 +74,7 @@ export const loginUser = async (req, res) => {
 };
 
 
-export const getUsers = async (req, res) => {
-  try {
-    const users = await User.find().select("-password -refreshTokens");
-    res.status(200).json(users);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+
 
 
 export const logoutUser = async (req, res) => {

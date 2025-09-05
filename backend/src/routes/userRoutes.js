@@ -2,7 +2,6 @@ import express from "express";
 import {
   registerUser,
   loginUser,
-  getUsers,
   logoutUser,
 } from "../controllers/usersController.js";
 
@@ -14,6 +13,5 @@ router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 
 
-router.get("/", getUsers);
 
 export default router;
