@@ -46,16 +46,6 @@ app.use("/api/users",userRoutes)
 
 app.use("/api/refresh",refreshRoutes)
 
-app.use(verifyJWT);
-app.use("/api/crops",cropRoutes)
-
-app.use("/api/notes",notesRoutes)
-
-app.use("/api/equipments",equipmentRoutes)
-
-
-
-
 
 app.use(serveStatic(path.join(__dirname, '../frontend/dist'), {
     index: ['index.html'],
@@ -66,6 +56,18 @@ app.use(serveStatic(path.join(__dirname, '../frontend/dist'), {
         }
     }
 }));
+
+
+app.use(verifyJWT);
+app.use("/api/crops",cropRoutes)
+
+app.use("/api/notes",notesRoutes)
+
+app.use("/api/equipments",equipmentRoutes)
+
+
+
+
 
 
 
