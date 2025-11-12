@@ -16,20 +16,26 @@ export default function PaymentPage() {
       </div>
     );
   }
+  const token = localStorage.getItem("accessToken");
 
-  const handleBuy = async () => {
-    try{
-      await api.delete('/crops/'+crop._id);
-      toast.success("Simulated payment successful!");
-      setTimeout(() => {
-        navigate("/coming-soon");
-      }, 2000);
-    } catch(err){
-      console.error("Error deleting crop:", err);
-      toast.error("Error processing your order. Please try again.");
-      return;
-    }
+const handleBuy = async () => {
+  try {
+    await api.delete(`/crops/${crop._id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    toast.success("Simulated payment successful!");
+    setTimeout(() => {
+      navigate("/coming-soon");
+    }, 2000);
+  } catch (err) {
+    console.error("Error deleting crop:", err);
+    toast.error("Error processing your order. Please try again.");
   }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-green-50 p-4">

@@ -5,11 +5,15 @@ import api from "../lib/axios";
 export default function EquipmentPage() {
   const [equipments, setEquipments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const token = localStorage.getItem("accessToken");
   useEffect(() => {
     const fetchEquipments = async () => {
       try {
-        const response = await api.get("/equipments");
+        const response = await api.get("/equipments", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setEquipments(response.data);
       } catch (error) {
         console.error("Error fetching equipments:", error);

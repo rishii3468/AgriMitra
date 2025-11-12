@@ -22,6 +22,10 @@ const app = express()
 const PORT = process.env.PORT || 5001
 const __dirname = path.resolve()
 
+//CORS
+if(process.env.NODE_ENV !== "production"){
+    app.use(cors(corsOptions));
+}
 
 //middleware
 
@@ -32,10 +36,6 @@ app.use(cookiieParser())
 
 app.use(credentials);
 
-//CORS
-if(process.env.NODE_ENV !== "production"){
-    app.use(cors(corsOptions));
-}
 
 
 
@@ -56,12 +56,12 @@ app.use(serveStatic(path.join(__dirname, '../frontend/dist'), {
         }
     }
 }));
-
+app.use("/api/notes",notesRoutes)
 
 app.use(verifyJWT);
 app.use("/api/crops",cropRoutes)
 
-app.use("/api/notes",notesRoutes)
+
 
 app.use("/api/equipments",equipmentRoutes)
 

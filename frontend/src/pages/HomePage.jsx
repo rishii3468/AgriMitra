@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const AgriConnect = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [username, setUsername] = useState(null); // Placeholder for future user authentication
+  const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+  console.log("Email from location state:", user?.username);
+  
   return (
     <div className="min-h-screen bg-white">
       {/* NAVBAR */}
@@ -32,14 +36,35 @@ const AgriConnect = () => {
             {/* Right Side */}
             <div className="flex items-center space-x-4">
 
-              <Link to="/login">
-                <button className="text-gray-700 hover:text-green-600 hidden sm:block transition-colors">Login</button>
-              </Link>
-              <Link to="/register">
-                <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 hidden sm:block transition-colors">
-                  Sign Up
-                </button>
-              </Link>
+              {user ? (
+  <div className="flex items-center space-x-3">
+    <div className="flex items-center bg-green-100 text-green-700 font-semibold rounded-full px-3 py-1">
+      <span className="mr-2">👤</span> {user?.username}
+    </div>
+    <button
+      onClick={() => {
+        localStorage.removeItem("user");
+        window.location.reload();
+      }}
+      className="text-red-600 hover:text-red-800 text-sm font-medium transition-colors"
+    >
+      Logout
+    </button>
+  </div>
+) : (
+  <>
+    <Link to="/login">
+      <button className="text-gray-700 hover:text-green-600 hidden sm:block transition-colors">
+        Login
+      </button>
+    </Link>
+    <Link to="/register">
+      <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 hidden sm:block transition-colors">
+        Sign Up
+      </button>
+    </Link>
+  </>
+)}
 
               {/* Hamburger */}
               <button

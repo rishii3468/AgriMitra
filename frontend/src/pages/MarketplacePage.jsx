@@ -1,22 +1,25 @@
-import React, { useState } from "react";
-import { Link } from 'react-router';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router";
 import api from "../lib/axios";
-import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 const fetchCrops = async () => {
   try {
-    const response = await api.get("/crops");
+    // Get JWT token from localStorage
+    const token = localStorage.getItem("accessToken");
+
+    const response = await api.get("/crops", {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+
     return response.data;
   } catch (error) {
     console.error("Error fetching crops:", error);
     throw error;
   }
 };
-
-
-
-
 
 export default function MarketPlace() {
   const [crops, setCrops] = useState([]);
@@ -30,25 +33,27 @@ export default function MarketPlace() {
       try {
         const data = await fetchCrops();
         setCrops(data);
-        console.log(data);
       } catch (err) {
         setError("Failed to load crops");
+        toast.error("Error fetching crops!");
       } finally {
         setLoading(false);
       }
     };
 
     getCrops();
-  }, [crops.length]);
-  
+  }, []); // ✅ Fixed dependency — avoids infinite loop
+
   const filteredCrops = crops.filter((crop) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
 
     const matchesSearch =
       crop.cropName.toLowerCase().includes(lowerSearchTerm) ||
       crop.farmerName.toLowerCase().includes(lowerSearchTerm) ||
-      (crop.location.city && crop.location.city.toLowerCase().includes(lowerSearchTerm)) ||
-      (crop.location.state && crop.location.state.toLowerCase().includes(lowerSearchTerm));
+      (crop.location.city &&
+        crop.location.city.toLowerCase().includes(lowerSearchTerm)) ||
+      (crop.location.state &&
+        crop.location.state.toLowerCase().includes(lowerSearchTerm));
 
     const matchesCategory =
       selectedCategory === "All Categories" ||
@@ -57,16 +62,12 @@ export default function MarketPlace() {
     return matchesSearch && matchesCategory;
   });
 
-
   return (
     <div className="bg-gray-50 min-h-screen">
-      
+      {/* Navbar */}
       <nav className="flex justify-between items-center px-4 sm:px-6 py-4 bg-white border-b">
-        <Link to='/'>
+        <Link to="/">
           <button className="flex items-center gap-2 text-green-700 hover:opacity-80">
-
-
-
             <span className="text-2xl">🌱</span>
             <span className="text-2xl font-extrabold">AgriMitra</span>
           </button>
@@ -78,18 +79,17 @@ export default function MarketPlace() {
               List Crop
             </button>
           </Link>
-
         </div>
       </nav>
 
-      
+      {/* Hero Section */}
       <section className="px-4 sm:px-6 py-6">
         <h2 className="text-3xl sm:text-4xl font-bold">Crop Marketplace</h2>
         <p className="text-gray-600 mt-1">
           Fresh produce directly from verified farmers
         </p>
 
-        
+        {/* Search and Filter */}
         <div className="flex flex-col md:flex-row gap-3 mt-5">
           <div className="flex-1">
             <input
@@ -114,16 +114,24 @@ export default function MarketPlace() {
         </div>
       </section>
 
-      
+      {/* Crop Cards */}
       <section className="grid gap-6 px-4 sm:px-6 pb-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filteredCrops.length > 0 ? (
+        {loading ? (
+          <div className="col-span-full text-center py-12 text-gray-500">
+            Loading crops...
+          </div>
+        ) : error ? (
+          <div className="col-span-full text-center py-12 text-red-500">
+            {error}
+          </div>
+        ) : filteredCrops.length > 0 ? (
           filteredCrops.map((crop, idx) => (
             <article
               key={idx}
               className="bg-white rounded-2xl border shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition overflow-hidden"
             >
               <img
-                src={crop.image || '/default-image.jpg'} 
+                src={crop.image || "/default-image.jpg"}
                 alt={crop.cropName}
                 className="h-44 w-full object-cover"
                 loading="lazy"
@@ -186,7 +194,6 @@ export default function MarketPlace() {
             </p>
           </div>
         )}
-
       </section>
     </div>
   );

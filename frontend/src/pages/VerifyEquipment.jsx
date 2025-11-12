@@ -76,11 +76,15 @@ const VerifiedFarmerForm = () => {
     const condition = answers[1]?.condition;
     const envCompliance = answers[2]?.main === "Yes";
     const warrantyService = answers[3]?.main !== "No";
-
+    const token = localStorage.getItem("accessToken");
     if (safety && age < 10 && condition !== "Poor" && envCompliance && warrantyService) {
       try {
 
-        await api.put(`/equipments/${equipmentId}`, { verified: true });
+        await api.put(`/equipments/${equipmentId}`, { verified: true }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         toast.success("Equipment verified successfully!");
         navigate("/equipment"); 
       } catch (error) {

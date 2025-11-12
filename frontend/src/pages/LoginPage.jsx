@@ -1,34 +1,32 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 export default function Login() {
-  const [phone, setPhone] = useState("");
-  const [result, setResult] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone }),
+      const res = await axios.post("http://localhost:5001/api/users/login", {
+        email,
+        password,
       });
-      const data = await res.json();
 
-      setResult(data.message);
-      if (res.ok) {
-        toast.success("Login successful!");
-        // Save user/token as needed, then navigate
-        setTimeout(() => {
-          navigate("/home");
-        }, 1500);
-      } else {
-        toast.error(data.message || "Login failed");
-      }
+      const { accessToken, user } = res.data;
+      toast.success("Login successful!");
+
+      // Store JWT token for authenticated requests
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // Navigate to home
+      setTimeout(() => navigate("/", { state: { user } }), 1500);
     } catch (err) {
-      console.error("Login error:", err);
-      toast.error("Login request failed.");
+      console.error("Login error:", err.response?.data || err.message);
+      toast.error(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -40,10 +38,18 @@ export default function Login() {
         </h2>
 
         <input
-          type="text"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="Enter phone number"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter email"
+          className="w-full p-3 border border-green-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter password"
           className="w-full p-3 border border-green-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
@@ -53,8 +59,6 @@ export default function Login() {
         >
           Login
         </button>
-
-        <p className="text-center text-green-800 font-medium mt-4">{result}</p>
       </div>
     </div>
   );

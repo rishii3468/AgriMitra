@@ -53,10 +53,14 @@ const ListEquipment = () => {
       rentPricePerDay: Number(formData.rentPricePerDay),
       verified: false,
     };
-
+    const token = localStorage.getItem("accessToken");
     try {
       setLoading(true);
-      await api.post('/equipments/create', payload);
+      await api.post('/equipments/create', payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setSuccess("Equipment listed successfully!");
       toast.success("Equipment listed successfully!");
       navigate('/equipment');

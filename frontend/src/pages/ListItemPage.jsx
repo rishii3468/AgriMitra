@@ -39,10 +39,14 @@ const ListCropForm = () => {
     if (!formData.contactEmail) newErrors.contactEmail = "Email is required";
     return newErrors;
   };
-
+  const token = localStorage.getItem("accessToken");
   const createCrop = async (cropData) => {
     try {   
-      const response = await api.post("/crops/create", cropData);
+      const response = await api.post("/crops/create", cropData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log("Crop created:", response.data);
       return response.data;
     } catch (error) {

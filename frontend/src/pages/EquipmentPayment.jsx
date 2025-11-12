@@ -16,7 +16,7 @@ export default function EquipmentPaymentPage() {
             </div>
         );
     }
-
+    const token = localStorage.getItem("accessToken");
     const price =
         mode === "rent" ? equipment.rentPricePerDay : equipment.buyPrice;
 
@@ -24,10 +24,18 @@ export default function EquipmentPaymentPage() {
         try {
            
             if (mode === "buy") {
-                await api.delete(`/equipments/${equipment._id}`);
+                await api.delete(`/equipments/${equipment._id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 toast.success("Purchase successful!");
             } else if (mode === "rent") {
-                 await api.delete(`/equipments/${equipment._id}`);
+                 await api.delete(`/equipments/${equipment._id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 toast.success("Rental confirmed!");
             }
             setTimeout(() => {
