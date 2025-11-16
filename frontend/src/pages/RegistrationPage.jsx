@@ -15,17 +15,24 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await api.post("/users/register", form);
+    try {
+      const res = await api.post("/users/register", form);
 
-    const data = await res.json();
-    setResult(data.message || "Registration complete!");
+      const data = res.data; 
 
-    if (data.message?.includes("success")) {
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 1500);
+      setResult(data.message || "Registration complete!");
+
+      if (data.message?.includes("success")) {
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 1500);
+      }
+    } catch (err) {
+      console.error(err);
+      setResult(err.response?.data?.message || "Registration failed!");
     }
   };
+
 
   return (
     <div
