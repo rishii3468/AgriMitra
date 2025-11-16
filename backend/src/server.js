@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5001
 const __dirname = path.resolve()
 
 //CORS
-if(process.env.NODE_ENV !== "production"){
+if(process.env.NODE_ENV !== "x"){
     app.use(cors(corsOptions));
 }
 
