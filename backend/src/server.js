@@ -22,10 +22,6 @@ const app = express()
 const PORT = process.env.PORT || 5001
 const __dirname = path.resolve()
 
-//CORS
-if(process.env.NODE_ENV !== "x"){
-    app.use(cors(corsOptions));
-}
 
 //middleware
 
@@ -36,6 +32,10 @@ app.use(cookiieParser())
 
 app.use(credentials);
 
+//CORS
+if(process.env.NODE_ENV !== "production"){
+    app.use(cors(corsOptions));
+}
 
 
 
@@ -45,6 +45,17 @@ app.use(express.json())
 app.use("/api/users",userRoutes)
 
 app.use("/api/refresh",refreshRoutes)
+app.use("/api/notes",notesRoutes)
+
+
+app.use(verifyJWT);
+app.use("/api/crops",cropRoutes)
+
+
+app.use("/api/equipments",equipmentRoutes)
+
+
+
 
 
 app.use(serveStatic(path.join(__dirname, '../frontend/dist'), {
@@ -56,18 +67,6 @@ app.use(serveStatic(path.join(__dirname, '../frontend/dist'), {
         }
     }
 }));
-app.use("/api/notes",notesRoutes)
-
-app.use(verifyJWT);
-app.use("/api/crops",cropRoutes)
-
-
-
-app.use("/api/equipments",equipmentRoutes)
-
-
-
-
 
 
 
@@ -78,4 +77,3 @@ connectDB().then(() => {
     });
 
 });
-
