@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import api from "../lib/axios";
 export default function SignUp() {
   const [form, setForm] = useState({
     username: "",
@@ -15,11 +15,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:5001/api/users/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    const res = await api.post("/users/register", form);
 
     const data = await res.json();
     setResult(data.message || "Registration complete!");

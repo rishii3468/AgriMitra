@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import api from "../lib/axios";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -10,10 +11,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:5001/api/users/login", {
-        email,
-        password,
-      });
+      const res = await api.post("/users/login", { email, password });
 
       const { accessToken, user } = res.data;
       toast.success("Login successful!");
