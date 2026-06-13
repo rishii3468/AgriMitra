@@ -8,15 +8,15 @@ AgriMitra is a web-based platform designed to assist farmers with modern agricul
 
 ## 🚀 Features
 
-* 🌱 Agriculture-focused tools and insights
-* 📊 User-friendly dashboard
-* 🔐 Authentication system (if implemented)
-* ⚡ Fast and responsive web interface
-* 🌐 Full-stack architecture
+* Agriculture-focused tools and insights
+* User-friendly dashboard
+* Authentication system 
+* Fast and responsive web interface
+* Full-stack architecture
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -34,7 +34,7 @@ AgriMitra is a web-based platform designed to assist farmers with modern agricul
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### 1. Clone Repository
 
@@ -93,12 +93,5 @@ npm start
 * 🛒 Marketplace for farmers
 * 📍 Location-based insights
 * 🔔 Notifications system
-
----
-
-## 👨‍💻 Author
-
-**Rishi**
-GitHub: https://github.com/rishii3468
 
 ---
