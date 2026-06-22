@@ -35,14 +35,21 @@ export default function MarketPlace() {
         setCrops(data);
       } catch (err) {
         setError("Failed to load crops");
-        toast.error("Error fetching crops!");
+        if(err.response.status === 403){
+          toast.error("Please login.")
+        }else{
+          toast.error("Error fetching crops!");
+        }
+        
+        
+        
       } finally {
         setLoading(false);
       }
     };
 
     getCrops();
-  }, []); // ✅ Fixed dependency — avoids infinite loop
+  }, []); 
 
   const filteredCrops = crops.filter((crop) => {
     const lowerSearchTerm = searchTerm.toLowerCase();

@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const AgriConnect = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [username, setUsername] = useState(null); // Placeholder for future user authentication
+  const [username, setUsername] = useState(null); 
   const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
   console.log("Email from location state:", user?.username);
-  
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!user){
+      toast.error("Please Login.");
+    }
+  }, [user,navigate])
+
   return (
     <div className="min-h-screen bg-white">
       {/* NAVBAR */}
@@ -24,47 +32,59 @@ const AgriConnect = () => {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex space-x-8">
-              <Link to="/marketplace" className="text-gray-700 hover:text-green-600 transition-colors">Marketplace</Link>
-              <Link to="/equipment" className="text-gray-700 hover:text-green-600 transition-colors">Equipment</Link>
-              <Link to="/community-notes" className="text-gray-700 hover:text-green-600 transition-colors">Community</Link>
-              <Link to="/knowledge" className="text-gray-700 hover:text-green-600 transition-colors">Knowledge</Link>
-              <Link to="/contract-farming" className="text-gray-700 hover:text-green-600 transition-colors">Contract Farming</Link>
-              <Link to="/contact-us" className="text-gray-700 hover:text-green-600 transition-colors">Contact Us</Link>
-              <Link to="/about-us" className="text-gray-700 hover:text-green-600 transition-colors">About Us</Link>
+              {user ? (
+                <>
+                  <Link to="/marketplace" className="text-gray-700 hover:text-green-600 transition-colors">Marketplace</Link>
+                  <Link to="/equipment" className="text-gray-700 hover:text-green-600 transition-colors">Equipment</Link>
+                  <Link to="/community-notes" className="text-gray-700 hover:text-green-600 transition-colors">Community</Link>
+                  <Link to="/knowledge" className="text-gray-700 hover:text-green-600 transition-colors">Knowledge</Link>
+                  <Link to="/contract-farming" className="text-gray-700 hover:text-green-600 transition-colors">Contract Farming</Link>
+                  <Link to="/contact-us" className="text-gray-700 hover:text-green-600 transition-colors">Contact Us</Link>
+                  <Link to="/about-us" className="text-gray-700 hover:text-green-600 transition-colors">About Us</Link>
+                </>
+              ) :
+                (<>
+                  <Link to="/community-notes" className="text-gray-700 hover:text-green-600 transition-colors">Community</Link>
+                  <Link to="/knowledge" className="text-gray-700 hover:text-green-600 transition-colors">Knowledge</Link>
+                  <Link to="/contract-farming" className="text-gray-700 hover:text-green-600 transition-colors">Contract Farming</Link>
+                  <Link to="/contact-us" className="text-gray-700 hover:text-green-600 transition-colors">Contact Us</Link>
+                  <Link to="/about-us" className="text-gray-700 hover:text-green-600 transition-colors">About Us</Link>
+                </>
+                )}
             </nav>
 
             {/* Right Side */}
             <div className="flex items-center space-x-4">
 
               {user ? (
-  <div className="flex items-center space-x-3">
-    <div className="flex items-center bg-green-100 text-green-700 font-semibold rounded-full px-3 py-1">
-      <span className="mr-2">👤</span> {user?.username}
-    </div>
-    <button
-      onClick={() => {
-        localStorage.removeItem("user");
-        window.location.reload();
-      }}
-      className="text-red-600 hover:text-red-800 text-sm font-medium transition-colors"
-    >
-      Logout
-    </button>
-  </div>
-) : (
-  <>
-    <Link to="/login">
-      <button className="text-gray-700 hover:text-green-600 hidden sm:block transition-colors">
-        Login
-      </button>
-    </Link>
-    <Link to="/register">
-      <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 hidden sm:block transition-colors">
-        Sign Up
-      </button>
-    </Link>
-  </>
-)}
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center bg-green-100 text-green-700 font-semibold rounded-full px-3 py-1">
+                    <span className="mr-2">👤</span> {user?.username}
+                  </div>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("user");
+                      window.location.reload();
+                    }}
+                    className="text-red-600 hover:text-red-800 text-sm font-medium transition-colors"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <button className="text-gray-700 hover:text-green-600 hidden sm:block transition-colors">
+                      Login
+                    </button>
+                  </Link>
+                  <Link to="/register">
+                    <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 hidden sm:block transition-colors">
+                      Sign Up
+                    </button>
+                  </Link>
+                </>
+              )}
 
               {/* Hamburger */}
               <button
@@ -159,6 +179,7 @@ const AgriConnect = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
             <Link to="/marketplace">
+
               <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
                 <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg
@@ -205,29 +226,29 @@ const AgriConnect = () => {
               </div>
             </Link>
             <Link to="/equipment">
-            <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-6 h-6 md:w-8 md:h-8 text-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2M7 7h10l1 4H6l1-4z"
-                  />
-                </svg>
+              <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    className="w-6 h-6 md:w-8 md:h-8 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2M7 7h10l1 4H6l1-4z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Rent Equipment</h3>
+                <p className="text-gray-600 text-sm">
+                  Access modern farming equipment when you need it.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Rent Equipment</h3>
-              <p className="text-gray-600 text-sm">
-                Access modern farming equipment when you need it.
-              </p>
-            </div>
             </Link>
-            
+
             <Link to="/contract-farming">
               <div className="text-center bg-white p-6 md:p-8 rounded-lg shadow-md border hover:shadow-lg transition-shadow duration-300">
                 <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">

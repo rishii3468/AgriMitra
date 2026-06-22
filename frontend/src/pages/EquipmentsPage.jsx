@@ -9,18 +9,29 @@ export default function EquipmentPage() {
   useEffect(() => {
     const fetchEquipments = async () => {
       try {
+
+        const authHeaderValue = token ? `Bearer ${token}` : '';
+
         const response = await api.get("/equipments", {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: authHeaderValue,
           },
         });
         setEquipments(response.data);
       } catch (error) {
+     
+        const status = error.response?.status;
+        if (status === 401 || status === 403) {
+          toast.error("Please Login.");
+        } else {
+          toast.error("Error fetching equipments.");
+        }
         console.error("Error fetching equipments:", error);
       }
     };
+
     fetchEquipments();
-  }, []);
+  }, [token]);
 
   const filteredEquipments = equipments.filter((eq) => {
     const lower = searchTerm.toLowerCase();
@@ -49,18 +60,18 @@ export default function EquipmentPage() {
               List Equipment
             </button>
           </Link>
-       
+
         </div>
       </nav>
 
-      
+
       <section className="px-4 sm:px-6 py-6">
         <h2 className="text-3xl sm:text-4xl font-bold text-green-800">Equipment Marketplace</h2>
         <p className="text-gray-600 mt-1">
           Buy or Rent farming equipment directly from trusted farmers. Explore verified tools and machines to make your farming more efficient.
         </p>
 
-        
+
         <div className="mt-5">
           <input
             type="text"
@@ -72,7 +83,7 @@ export default function EquipmentPage() {
         </div>
       </section>
 
-      
+
       <section className="px-4 sm:px-6 pb-12 flex flex-col gap-4">
         {filteredEquipments.length > 0 ? (
           filteredEquipments.map((eq, idx) => (
@@ -80,7 +91,7 @@ export default function EquipmentPage() {
               key={idx}
               className="bg-white rounded-xl border border-green-100 shadow hover:shadow-md transition flex flex-col sm:flex-row items-start sm:items-center p-4 gap-4"
             >
-              
+
               <img
                 src={eq.image || "/default-equipment.jpg"}
                 alt={eq.name}
@@ -88,7 +99,7 @@ export default function EquipmentPage() {
                 loading="lazy"
               />
 
-              
+
               <div className="flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h3 className="font-semibold text-lg text-green-800">{eq.name}</h3>
@@ -116,11 +127,11 @@ export default function EquipmentPage() {
                 </div>
               </div>
 
-              
+
               <div className="flex gap-2 w-full sm:w-auto">
                 <Link
                   to="/equipment-payment"
-                  state={{ equipment: eq, mode: "buy" }} 
+                  state={{ equipment: eq, mode: "buy" }}
                 >
                   <button className="flex-1 sm:flex-none bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition text-center shadow">
                     Buy Now
